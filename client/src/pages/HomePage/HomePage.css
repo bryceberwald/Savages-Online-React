@@ -1,0 +1,78 @@
+.HomePageContainer {
+    background-color: #000000; /* Light brown background */
+    color: #ffffff; /* Dark text */
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    padding: 20px;
+    height: 100vh; /* Use the full page height */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+  
+.Header {
+    background-color: #6d625e; /* Light brown header background */
+    padding: 20px;
+}
+
+.Title {
+    font-size: 64px;
+    font-weight: 700; /* Bold */
+    margin: 0;
+}
+
+.Subtitle {
+    font-size: 24px;
+    font-weight: 400; /* Regular */
+    margin-top: 10px;
+}
+
+.MainContent {
+    flex-grow: 1; /* Grow to fill available space */
+    padding: 20px;
+}
+
+.DescriptionTitle {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.DescriptionText {
+    font-size: 16px;
+    font-weight: 400; /* Regular */
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.5;
+}
+
+.CTASection {
+    margin-top: 20px;
+}
+
+.PlayButton {
+    background-color: #009688; /* Greenish brown */
+    color: #fff;
+    padding: 15px 30px;
+    font-size: 24px;
+    font-weight: 500; /* Medium */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+}
+
+.PlayButton:hover {
+    background-color: #007a6c; /* Darker greenish brown on hover */
+}
+
+.Footer {
+    background-color: #6d625e; /* Light brown footer background */
+    padding: 20px;
+}
+
+.FooterText {
+    font-size: 14px;
+    font-weight: 300;
+}
