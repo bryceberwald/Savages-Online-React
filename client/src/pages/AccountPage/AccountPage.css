@@ -1,4 +1,4 @@
-.GamePageContainer {
+.AccountPageContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -9,13 +9,13 @@
   
 .FormContainer {
     width: 60%;
-    margin-bottom: 20px; /* Add some space between the form and the button */
+    margin-bottom: 20px;
 }
 
 .ToggleFormButton {
     padding: 10px 20px;
-    background-color: #009688; /* Example background color */
-    color: #fff; /* Example text color */
+    background-color: #009688;
+    color: #fff;
     border: none;
     cursor: pointer;
     font-size: 16px;
@@ -24,5 +24,5 @@
 }
 
 .ToggleFormButton:hover {
-    background-color: #007a6c; /* Example hover color */
+    background-color: #007a6c;
 }

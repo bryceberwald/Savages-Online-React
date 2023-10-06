@@ -1,34 +1,34 @@
 .HomePageContainer {
-    background-color: #000000; /* Light brown background */
-    color: #ffffff; /* Dark text */
+    background-color: #000000;
+    color: #ffffff;
     font-family: 'Roboto', sans-serif;
     text-align: center;
     padding: 20px;
-    height: 100vh; /* Use the full page height */
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
   
 .Header {
-    background-color: #6d625e; /* Light brown header background */
+    background-color: #6d625e;
     padding: 20px;
 }
 
 .Title {
     font-size: 64px;
-    font-weight: 700; /* Bold */
+    font-weight: 700;
     margin: 0;
 }
 
 .Subtitle {
     font-size: 24px;
-    font-weight: 400; /* Regular */
+    font-weight: 400;
     margin-top: 10px;
 }
 
 .MainContent {
-    flex-grow: 1; /* Grow to fill available space */
+    flex-grow: 1;
     padding: 20px;
 }
 
@@ -40,7 +40,7 @@
 
 .DescriptionText {
     font-size: 16px;
-    font-weight: 400; /* Regular */
+    font-weight: 400;
     max-width: 800px;
     margin: 0 auto;
     line-height: 1.5;
@@ -51,11 +51,11 @@
 }
 
 .PlayButton {
-    background-color: #009688; /* Greenish brown */
+    background-color: #009688;
     color: #fff;
     padding: 15px 30px;
     font-size: 24px;
-    font-weight: 500; /* Medium */
+    font-weight: 500;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -64,11 +64,11 @@
 }
 
 .PlayButton:hover {
-    background-color: #007a6c; /* Darker greenish brown on hover */
+    background-color: #007a6c;
 }
 
 .Footer {
-    background-color: #6d625e; /* Light brown footer background */
+    background-color: #6d625e;
     padding: 20px;
 }
 

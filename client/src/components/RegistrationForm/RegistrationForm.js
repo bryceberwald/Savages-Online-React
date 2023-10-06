@@ -10,7 +10,7 @@ class RegistrationForm extends Component {
       password: '',
       confirmPassword: '',
     };
-  }
+  };
 
   handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -86,7 +86,7 @@ class RegistrationForm extends Component {
         </form>
       </div>
     );
-  }
-}
+  };
+};
 
 export default RegistrationForm;

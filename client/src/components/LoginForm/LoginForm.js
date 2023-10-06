@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './LoginForm.css'
+import './LoginForm.css';
 
 class LoginForm extends Component {
   
@@ -9,7 +9,7 @@ class LoginForm extends Component {
       username: '',
       password: '',
     };
-  }
+  };
 
   handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -61,7 +61,7 @@ class LoginForm extends Component {
         </form>
       </div>
     );
-  }
-}
+  };
+};
 
 export default LoginForm;

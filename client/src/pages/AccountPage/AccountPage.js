@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import LoginForm from '../../components/LoginForm/LoginForm';
 import RegistrationForm from '../../components/RegistrationForm/RegistrationForm';
-import './GamePage.css';
+import './AccountPage.css';
 
-function GamePage() {
+function AccountPage() {
   const [showRegistrationForm, setShowRegistrationForm] = useState(false); // Start with Login form displayed
 
   const toggleForm = () => {
@@ -11,7 +11,7 @@ function GamePage() {
   };
 
   return (
-    <div className="GamePageContainer">
+    <div className="AccountPageContainer">
       <div className="FormContainer">
         {showRegistrationForm ? <RegistrationForm /> : <LoginForm />}
       </div>
@@ -20,6 +20,6 @@ function GamePage() {
       </button>
     </div>
   );
-}
+};
 
-export default GamePage;
+export default AccountPage;

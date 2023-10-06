@@ -41,7 +41,6 @@
 .form-group button[type="submit"] {
   width: 100%;
   padding: 10px;
-  background-color: #007BFF;
   border: none;
   border-radius: 3px;
   color: #fff;
@@ -50,10 +49,6 @@
   cursor: pointer;
   transition: background-color 0.3s;
 }
-
-.form-group button[type="submit"]:hover {
-  background-color: #0056b3;
-}  
 
 .form-group #registerSubmitButton {
   background-color: rgb(84, 83, 81);
