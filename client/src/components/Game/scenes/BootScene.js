@@ -26,7 +26,7 @@ export default class BootScene extends Phaser.Scene {
         this.loadImages();
 
         // Load Map Atlas Files
-        //this.loadMapAtlasFiles();
+        this.loadMapAtlasFiles();
       
         // Load SpriteSheets
         this.loadSpriteSheets();
