@@ -1,11 +1,10 @@
 import React from 'react';
+import './Game.css';
+import './config/configuration.js';
+
 
 function Game() {
-  return (
-    <div>
-        <h1>Game Component</h1>
-    </div>
-  );
+  <div id="Savages-Online"></div>
 };
 
 export default Game;

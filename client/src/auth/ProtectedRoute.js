@@ -1,12 +1,19 @@
 import React from 'react';
-import { Outlet, Navigate } from 'react-router-dom'
-import { useAuth } from './AuthProvider.js'
+import { Navigate } from 'react-router-dom';
+import { useAuth } from './AuthProvider.js';
+import Game from '../components/Game/Game.js';
 
-const ProtectedRoute = () => {
+function ProtectedRoute(){
   const { isLoggedIn } = useAuth();
     return(
-        isLoggedIn ? <Outlet/> : <Navigate to="/auth"/>
-    )
-}
+      <div>
+      {!isLoggedIn ? (<Navigate to="/auth" /> ) : (
+        <>
+           <Game></Game>
+        </>
+      )}
+    </div>
+    );
+};
 
-export default ProtectedRoute
+export default ProtectedRoute;
