@@ -17,15 +17,53 @@ class RegistrationForm extends Component {
     this.setState({ [name]: value });
   };
 
-  handleSubmit = (event) => {
+  // handleSubmit = (event) => {
+  //   event.preventDefault();
+
+  //   const { username, email, password, confirmPassword } = this.state;
+
+  //   // You can add your registration logic here, like sending a request to a server.
+
+  //   console.log('Submitted:', { username, email, password, confirmPassword });
+  // };
+  handleSubmit = async (event) => {
     event.preventDefault();
-
+  
     const { username, email, password, confirmPassword } = this.state;
-
-    // You can add your registration logic here, like sending a request to a server.
-
-    console.log('Submitted:', { username, email, password, confirmPassword });
+  
+    // Check if passwords match (add more validation as needed)
+    if (password !== confirmPassword) {
+      alert('Passwords do not match');
+      return;
+    }
+  
+    // Create a user object to send to the server
+    const user = { username, email, password };
+  
+    try {
+      const response = await fetch('http://localhost:3001/api/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(user),
+      });
+  
+      if (response.status === 201) {
+        console.log('User registered successfully');
+        // Optionally, you can redirect to a login page or perform other actions here
+      } else if (response.status === 400) {
+        // Registration failed due to duplicate user
+        const responseData = await response.json();
+        console.log(responseData.message); // Display the error message to the user
+      } else {
+        console.log('Registration failed');
+      }
+    } catch (error) {
+      console.log('Error:', error);
+    }
   };
+  
 
   render() {
     return (
