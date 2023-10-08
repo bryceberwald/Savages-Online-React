@@ -4,8 +4,9 @@ const cors = require("cors");
 const express = require("express");
 const socketIo = require("socket.io");
 const bodyParser = require('body-parser');
-const userRoute = require('./routes/user');
-const registerRoute = require('./routes/register')
+const userRoutes = require('./routes/user');
+const registerRoutes = require('./routes/register');
+const loginRoutes = require('./routes/login');
 const mongoose = require('./config/database');
 
 const app = express();
@@ -30,8 +31,9 @@ app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
 // Use the userRoutes for handling user-related routes
-app.use('/users', userRoute);
-app.use('/api/register', registerRoute);
+app.use('/users', userRoutes);
+app.use('/api/register', registerRoutes);
+app.use('/api/login', loginRoutes);
 
 server.listen(PORT, () => {
     console.log(`Server is listening on port ${PORT}`);

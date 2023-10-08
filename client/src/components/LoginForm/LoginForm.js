@@ -138,14 +138,39 @@ function LoginFormButton({ username, password }) {
   const navigate = useNavigate();
   const { login } = useAuth();
 
-  const handleClick = () => {
+  const handleClick = async (event) => {
+    event.preventDefault(); // Prevent the default form submission behavior
+  
     // Check if both username and password are filled before navigating
     if (username && password) {
-      login(); // Call the login function to set isLoggedIn to true
-      navigate('/play');
-      console.log('Submitted:', { username, password });
-    } 
+      try {
+        const response = await fetch('http://localhost:3001/api/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ username, password }),
+        });
+  
+        if (response.status === 200) {
+          const data = await response.json();
+          const user = data.user;
+          console.log('Login successful:', user);
+          login();
+          // Perform user authentication (e.g., set a session or token)
+          // Redirect or navigate to the desired page after successful login
+          navigate('/play');
+        } else {
+          const data = await response.json();
+          console.error('Login failed:', data.message);
+          // Display an error message to the user
+        }
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    }
   };
+  
 
   return (
     <button id="loginSubmitButton" type="submit" onClick={handleClick}>
