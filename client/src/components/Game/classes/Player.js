@@ -8,7 +8,7 @@ export default class Player extends Phaser.Physics.Arcade.Image {
     * Constructor is called at the
     * initiation of Player class.
     ******************************/
-    constructor(scene, x, y, key) {
+    constructor(scene, x, y, key, socket) {
       super(scene, x, y);
 
       // Create a variable that holds the keyboard input
@@ -19,6 +19,7 @@ export default class Player extends Phaser.Physics.Arcade.Image {
       this.playerX = x;
       this.playerY = y;
       this.key = key;
+      this.socket = socket;
 
       // Create a variable to hold players chat message
       this.chatMessage = "";
@@ -30,7 +31,7 @@ export default class Player extends Phaser.Physics.Arcade.Image {
       this.velocity = 500;
 
       // Set the origin for player image
-      this.setOrigin(0.5, 1.25);
+      this.setOrigin(0.5, 0.5);
 
       // Resize the frame of the sprite sheet being used.
       this.setScale(2);
@@ -46,6 +47,9 @@ export default class Player extends Phaser.Physics.Arcade.Image {
 
       // Add a camera to follow the player in the GameScene
       scene.cameras.main.startFollow(this, true);
+
+      // Handle player socketIO 'on' listeners
+      this.socket.handleSocketOnPlayerListeners();
     };
 
     /******************************
@@ -68,6 +72,9 @@ export default class Player extends Phaser.Physics.Arcade.Image {
 
       // Update chat message to empty string after usage
       this.uiscene.setChatMessageEmpty();
+
+      // Handle socketIO player position 'emit'
+      this.socket.handleSocketEmitPlayerPosition(this.x, this.y);
     };
 
     /******************************
