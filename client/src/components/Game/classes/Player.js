@@ -48,8 +48,6 @@ export default class Player extends Phaser.Physics.Arcade.Image {
       // Add a camera to follow the player in the GameScene
       scene.cameras.main.startFollow(this, true);
 
-      // Handle player socketIO 'on' listeners
-      this.socket.handleSocketOnPlayerListeners();
     };
 
     /******************************
@@ -68,13 +66,14 @@ export default class Player extends Phaser.Physics.Arcade.Image {
       this.chatMessage = this.uiscene.getChatMessage()
 
       // Output the chat message to the console
-      this.displayChatMessage();
+      //this.displayChatMessage();
 
       // Update chat message to empty string after usage
       this.uiscene.setChatMessageEmpty();
 
       // Handle socketIO player position 'emit'
-      this.socket.handleSocketEmitPlayerPosition(this.x, this.y);
+      this.newPositionData = this.socket.handleSocketEmitPlayerPosition(this.x, this.y);
+      console.log(this.newPositionData);
     };
 
     /******************************

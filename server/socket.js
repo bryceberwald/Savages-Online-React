@@ -10,7 +10,8 @@ function initializeSocket(server, corsOptions) {
 
     socket.on("playerPosition", (x, y) => {
       console.log(`x: ${x} & y: ${y}`);
-      io.emit("Received Position", "Received player's new position.");
+      const data = {x, y};
+      io.emit("Received Position ", data);
     });
 
     socket.on("disconnect", () => {

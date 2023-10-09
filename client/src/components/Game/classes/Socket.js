@@ -9,8 +9,10 @@ export default class Socket {
     * Constructor is called at the
     * initiation of Socket class.
     ******************************/
-    constructor(){
-        this.socket = "";
+    constructor(scene){
+        this.socket = null;
+        this.scene = scene;
+        //console.log(scene);
     };
 
     /******************************
@@ -23,21 +25,11 @@ export default class Socket {
 
         this.socket.on("connect", () => {
             console.log("Connected to server");
+            this.scene.createNewPlayer();
         });
     
         this.socket.on("disconnect", () => {
             console.log("Disconnected from server");
-        });
-    };
-
-    /******************************
-    * This function will handle all
-    * the socket.on listeners for
-    * the 'Player' class.
-    ******************************/
-    handleSocketOnPlayerListeners(){
-        this.socket.on("receivedPosition", (str) => {
-            console.log(str);
         });
     };
 
@@ -49,6 +41,8 @@ export default class Socket {
     ******************************/
     handleSocketEmitPlayerPosition(x, y){
         this.socket.emit("playerPosition", x, y);
+        const data = {x, y};
+        return data;
     };
 
 };

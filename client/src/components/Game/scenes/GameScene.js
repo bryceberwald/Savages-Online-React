@@ -12,23 +12,22 @@ export default class GameScene extends Phaser.Scene {
       super("Game");
       this.currentMap = "map01";
       this.currentPlayerSpriteSheet = "human01";
-      
     };
 
     init() {
       console.log("GameScene init() function is called.");
       
-      this.socket = new Socket();
+      this.socket = new Socket(this);
       this.socket.initializeSocketIO();
       
       this.map = new Map(this, this.currentMap);
-      this.player = new Player(this, config.width / 2, config.height / 2, this.currentPlayerSpriteSheet, this.socket);
+      // this.player = new Player(this, config.width / 2, config.height / 2, this.currentPlayerSpriteSheet, this.socket);
       
       this.scene.launch('Ui');
       this.uiscene = this.scene.get('Ui');
 
-      this.player.setUiScene(this.uiscene);
-      this.player.setEventListeners();
+      // this.player.setUiScene(this.uiscene);
+      // this.player.setEventListeners();
     };
 
     preload() {
@@ -41,7 +40,17 @@ export default class GameScene extends Phaser.Scene {
 
     update() {
       //console.log("GameScene update() function is called.");
-      this.player.update();
+      if(this.player){
+        this.player.update();
+      } else {
+        console.log("Initializing player still...");
+      };
+    };
+
+    createNewPlayer(){
+      this.player = new Player(this, config.width / 2, config.height / 2, this.currentPlayerSpriteSheet, this.socket);
+      this.player.setUiScene(this.uiscene);
+      this.player.setEventListeners();
     };
 
 };
