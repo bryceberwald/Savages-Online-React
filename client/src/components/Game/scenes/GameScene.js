@@ -10,6 +10,10 @@ import Socket from '../classes/Socket.js';
 export default class GameScene extends Phaser.Scene {
     constructor() {
       super("Game");
+      this.currentPlayer = null;
+      this.players = {};
+      this.playerId = "";
+
       this.currentMap = "map01";
       this.currentPlayerSpriteSheet = "human01";
     };
@@ -21,13 +25,9 @@ export default class GameScene extends Phaser.Scene {
       this.socket.initializeSocketIO();
       
       this.map = new Map(this, this.currentMap);
-      // this.player = new Player(this, config.width / 2, config.height / 2, this.currentPlayerSpriteSheet, this.socket);
       
       this.scene.launch('Ui');
       this.uiscene = this.scene.get('Ui');
-
-      // this.player.setUiScene(this.uiscene);
-      // this.player.setEventListeners();
     };
 
     preload() {
@@ -40,6 +40,7 @@ export default class GameScene extends Phaser.Scene {
 
     update() {
       //console.log("GameScene update() function is called.");
+      
       if(this.player){
         this.player.update();
       } else {
@@ -51,6 +52,19 @@ export default class GameScene extends Phaser.Scene {
       this.player = new Player(this, config.width / 2, config.height / 2, this.currentPlayerSpriteSheet, this.socket);
       this.player.setUiScene(this.uiscene);
       this.player.setEventListeners();
+    };
+
+    getCurrentPlayer(player) {
+      console.log(this.player)
+      this.currentPlayer = player;
+    };
+
+    getAllPlayers(players){
+      this.players = players;
+    };
+
+    getCurrentPlayerId(id){
+      this.playerId = id;
     };
 
 };

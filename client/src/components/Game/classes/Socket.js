@@ -12,7 +12,9 @@ export default class Socket {
     constructor(scene){
         this.socket = null;
         this.scene = scene;
-        //console.log(scene);
+        this.player = {};
+        this.players = {};
+        this.playerId = "";
     };
 
     /******************************
@@ -26,6 +28,17 @@ export default class Socket {
         this.socket.on("connect", () => {
             console.log("Connected to server");
             this.scene.createNewPlayer();
+        });
+
+        this.socket.on("playerId", (id) => {
+            this.playerId = id;
+            console.log(id)
+            // Send current player id to GameScene
+            this.scene.getCurrentPlayerId(id);
+        });
+
+        this.socket.on("updatePlayerPositions", (players) => {
+            console.log(players);
         });
     
         this.socket.on("disconnect", () => {
@@ -41,8 +54,8 @@ export default class Socket {
     ******************************/
     handleSocketEmitPlayerPosition(x, y){
         this.socket.emit("playerPosition", x, y);
-        const data = {x, y};
-        return data;
+        // const data = {x, y};
+        // return data;
     };
 
 };

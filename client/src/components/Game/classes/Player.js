@@ -72,8 +72,7 @@ export default class Player extends Phaser.Physics.Arcade.Image {
       this.uiscene.setChatMessageEmpty();
 
       // Handle socketIO player position 'emit'
-      this.newPositionData = this.socket.handleSocketEmitPlayerPosition(this.x, this.y);
-      console.log(this.newPositionData);
+      this.socket.handleSocketEmitPlayerPosition(this.x, this.y);
     };
 
     /******************************
