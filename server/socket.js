@@ -8,7 +8,7 @@ function initializeSocket(server, corsOptions) {
     cors: corsOptions, // Use the provided CORS options
   });
 
-  io.on("connect", (socket) => {
+  io.on("connect", socket => {
     console.log("A user connected");
 
     // Generate a unique player ID for the connected player
@@ -16,17 +16,20 @@ function initializeSocket(server, corsOptions) {
 
     // Store the player ID in the `players` object
     players[playerId] = { socket, x: 0, y: 0 };
+    console.log(players);
 
     // Send the player ID to the connected client
     socket.emit("playerId", playerId);
 
     socket.on("playerPosition", (x, y) => {
+      console.log("--------ERROR IN CODE---------")
+      console.log(players[playerId]);
       players[playerId].x = x;
       players[playerId].y = y;
       console.log(`x: ${x} & y: ${y}`);
 
       // Broadcast the updated player positions to all connected clients
-      io.emit("updatePlayerPositions", players);
+      socket.emit("updatePlayerPositions", players);
 
     });
 

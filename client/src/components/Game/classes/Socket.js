@@ -23,7 +23,9 @@ export default class Socket {
     * to/from the server.
     ******************************/
     initializeSocketIO(){
-        this.socket = io.connect("http://localhost:3001");
+        this.socket = io.connect("http://localhost:3001",   { 
+            withCredentials: true,
+        });
 
         this.socket.on("connect", () => {
             console.log("Connected to server");
@@ -37,8 +39,9 @@ export default class Socket {
             this.scene.getCurrentPlayerId(id);
         });
 
-        this.socket.on("updatePlayerPositions", (players) => {
-            console.log(players);
+        this.socket.on("updatePlayerPositions", players => {
+            this.players = players;
+            console.log(this.players);
         });
     
         this.socket.on("disconnect", () => {
@@ -58,4 +61,4 @@ export default class Socket {
         // return data;
     };
 
-};
+}
