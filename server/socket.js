@@ -15,18 +15,19 @@ function initializeSocket(server, corsOptions) {
     const playerId = uuidv4();
 
     // Store the player ID in the `players` object
-    players[playerId] = { socket, x: 0, y: 0 };
+    players[playerId] = { x: 0, y: 0 };
     console.log(players);
 
     // Send the player ID to the connected client
     socket.emit("playerId", playerId);
 
     socket.on("playerPosition", (x, y) => {
-      console.log("--------ERROR IN CODE---------")
       console.log(players[playerId]);
       players[playerId].x = x;
       players[playerId].y = y;
       console.log(`x: ${x} & y: ${y}`);
+
+      //console.log("--------ERROR IN CODE---------");
 
       // Broadcast the updated player positions to all connected clients
       socket.emit("updatePlayerPositions", players);

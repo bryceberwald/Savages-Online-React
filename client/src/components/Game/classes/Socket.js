@@ -39,7 +39,7 @@ export default class Socket {
             this.scene.getCurrentPlayerId(id);
         });
 
-        this.socket.on("updatePlayerPositions", players => {
+        this.socket.on("updatePlayerPositions", (players) => {
             this.players = players;
             console.log(this.players);
         });
