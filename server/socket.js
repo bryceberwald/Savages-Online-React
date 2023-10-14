@@ -27,8 +27,6 @@ function initializeSocket(server, corsOptions) {
       players[playerId].y = y;
       console.log(`x: ${x} & y: ${y}`);
 
-      //console.log("--------ERROR IN CODE---------");
-
       // Broadcast the updated player positions to all connected clients
       socket.emit("updatePlayerPositions", players);
 
@@ -40,8 +38,9 @@ function initializeSocket(server, corsOptions) {
       delete players[playerId];
 
       // Broadcast the updated player positions to all connected clients
-      io.emit("updatePlayerPositions", players);
+      socket.emit("updatePlayerPositions", players);
     });
+    
   });
 
 };

@@ -41,7 +41,8 @@ export default class Socket {
 
         this.socket.on("updatePlayerPositions", (players) => {
             this.players = players;
-            console.log(this.players);
+            this.scene.getAllPlayers(this.players);
+            //console.log(this.players);
         });
     
         this.socket.on("disconnect", () => {
@@ -57,8 +58,6 @@ export default class Socket {
     ******************************/
     handleSocketEmitPlayerPosition(x, y){
         this.socket.emit("playerPosition", x, y);
-        // const data = {x, y};
-        // return data;
     };
 
-}
+};

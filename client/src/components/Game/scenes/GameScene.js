@@ -46,6 +46,29 @@ export default class GameScene extends Phaser.Scene {
       } else {
         console.log("Initializing player still...");
       };
+
+      // Assign new coordinates to all players excluding itself
+      // for (const playerId in this.players) {
+      //   if (playerId !== this.playerId) {
+      //     const otherPlayer = this.players[playerId];
+      //     this.player.x = otherPlayer.x;
+      //     this.player.y = otherPlayer.y;
+      //     console.log(`x: ${otherPlayer.x} | y: ${otherPlayer.y}`);
+      //   };
+      // };
+      
+      for (const playerId in this.players) {
+        if (playerId !== this.playerId) {
+          const otherPlayer = this.players[playerId];
+          const currentPlayer = this.player;
+    
+          // Update the other player's position
+          currentPlayer.x = otherPlayer.x;
+          currentPlayer.y = otherPlayer.y;
+          console.log(`x: ${otherPlayer.x} | y: ${otherPlayer.y}`);
+        };
+      };
+
     };
 
     createNewPlayer(){
