@@ -46,6 +46,22 @@ export default class GameScene extends Phaser.Scene {
 
     };
 
+    showPlayers(players){
+
+      for(const p in players){
+        //console.log(p)
+        //console.log(this.playerId)
+        //console.log(players[p])
+        if(p !== this.playerId){
+          new Player(this, players[p].x, players[p].y, this.currentPlayerSpriteSheet, this.socket);
+            //.setEventListeners();
+          console.log("Added new player.")
+        };
+
+      };
+
+    };
+
     createNewPlayer(){
       this.player = new Player(this, config.width / 2, config.height / 2, this.currentPlayerSpriteSheet, this.socket);
       this.player.setUiScene(this.uiscene);

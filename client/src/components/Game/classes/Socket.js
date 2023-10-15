@@ -39,6 +39,10 @@ export default class Socket {
 
         this.socket.on("updatePlayerPositions", (players) => {
             this.players = players;
+            this.player = this.players[this.playerId];
+
+            this.scene.showPlayers(this.players); // New code
+
             this.scene.getCurrentPlayer(this.players[this.playerId]);
             this.scene.getAllPlayers(this.players);
         });
