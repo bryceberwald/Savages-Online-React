@@ -17,15 +17,6 @@ class RegistrationForm extends Component {
     this.setState({ [name]: value });
   };
 
-  // handleSubmit = (event) => {
-  //   event.preventDefault();
-
-  //   const { username, email, password, confirmPassword } = this.state;
-
-  //   // You can add your registration logic here, like sending a request to a server.
-
-  //   console.log('Submitted:', { username, email, password, confirmPassword });
-  // };
   handleSubmit = async (event) => {
     event.preventDefault();
   
@@ -35,7 +26,7 @@ class RegistrationForm extends Component {
     if (password !== confirmPassword) {
       alert('Passwords do not match');
       return;
-    }
+    };
   
     // Create a user object to send to the server
     const user = { username, email, password };
@@ -58,12 +49,11 @@ class RegistrationForm extends Component {
         console.log(responseData.message); // Display the error message to the user
       } else {
         console.log('Registration failed');
-      }
+      };
     } catch (error) {
       console.log('Error:', error);
-    }
+    };
   };
-  
 
   render() {
     return (

@@ -43,18 +43,6 @@ export default class GameScene extends Phaser.Scene {
       } else {
         console.log("Initializing player still...");
       };
-      
-      for (const playerId in this.players) {
-        if (playerId !== this.playerId) {
-          const otherPlayer = this.players[playerId];
-          const currentPlayer = this.player;
-    
-          // Update the other player's position
-          currentPlayer.x = otherPlayer.x;
-          currentPlayer.y = otherPlayer.y;
-          console.log(`x: ${otherPlayer.x} | y: ${otherPlayer.y}`);
-        };
-      };
 
     };
 
@@ -64,6 +52,10 @@ export default class GameScene extends Phaser.Scene {
       this.player.setEventListeners();
     };
 
+    getCurrentPlayerId(id){
+      this.playerId = id;
+    };
+
     getCurrentPlayer(player) {
       this.currentPlayer = player;
     };
@@ -71,9 +63,5 @@ export default class GameScene extends Phaser.Scene {
     getAllPlayers(players){
       this.players = players;
     };
-
-    getCurrentPlayerId(id){
-      this.playerId = id;
-    };
-
+    
 };
