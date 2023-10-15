@@ -34,15 +34,13 @@ export default class Socket {
 
         this.socket.on("playerId", (id) => {
             this.playerId = id;
-            console.log(id)
-            // Send current player id to GameScene
             this.scene.getCurrentPlayerId(id);
         });
 
         this.socket.on("updatePlayerPositions", (players) => {
             this.players = players;
+            this.scene.getCurrentPlayer(this.players[this.playerId]);
             this.scene.getAllPlayers(this.players);
-            //console.log(this.players);
         });
     
         this.socket.on("disconnect", () => {

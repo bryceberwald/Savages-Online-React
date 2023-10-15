@@ -13,7 +13,6 @@ export default class GameScene extends Phaser.Scene {
       this.currentPlayer = null;
       this.players = {};
       this.playerId = "";
-
       this.currentMap = "map01";
       this.currentPlayerSpriteSheet = "human01";
     };
@@ -23,9 +22,7 @@ export default class GameScene extends Phaser.Scene {
       
       this.socket = new Socket(this);
       this.socket.initializeSocketIO();
-      
       this.map = new Map(this, this.currentMap);
-      
       this.scene.launch('Ui');
       this.uiscene = this.scene.get('Ui');
     };
@@ -46,16 +43,6 @@ export default class GameScene extends Phaser.Scene {
       } else {
         console.log("Initializing player still...");
       };
-
-      // Assign new coordinates to all players excluding itself
-      // for (const playerId in this.players) {
-      //   if (playerId !== this.playerId) {
-      //     const otherPlayer = this.players[playerId];
-      //     this.player.x = otherPlayer.x;
-      //     this.player.y = otherPlayer.y;
-      //     console.log(`x: ${otherPlayer.x} | y: ${otherPlayer.y}`);
-      //   };
-      // };
       
       for (const playerId in this.players) {
         if (playerId !== this.playerId) {
@@ -78,7 +65,6 @@ export default class GameScene extends Phaser.Scene {
     };
 
     getCurrentPlayer(player) {
-      console.log(this.player)
       this.currentPlayer = player;
     };
 
