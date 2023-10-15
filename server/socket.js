@@ -1,31 +1,33 @@
 const socketIo = require("socket.io");
-const { v4: uuidv4 } = require('uuid'); // Import the UUID function
+const { v4: uuidv4 } = require('uuid');
 
 const players = {};
 
 function initializeSocket(server, corsOptions) {
   const io = socketIo(server, {
-    cors: corsOptions, // Use the provided CORS options
+    cors: corsOptions, // Use the provided CORS options from server.js
   });
 
   io.on("connect", socket => {
-    console.log("A user connected");
 
     // Generate a unique player ID for the connected player
     const playerId = uuidv4();
 
+    // Display a message to ensure connection
+    console.log(`Player ${playerId} connected`);
+
     // Store the player ID in the `players` object
     players[playerId] = { x: 0, y: 0 };
-    console.log(players);
 
     // Send the player ID to the connected client
     socket.emit("playerId", playerId);
 
+    // Listen for a change in the players position
     socket.on("playerPosition", (x, y) => {
-      console.log(players[playerId]);
+
+      // Update players coordinates in the players objects {x, y}
       players[playerId].x = x;
       players[playerId].y = y;
-      console.log(`x: ${x} & y: ${y}`);
 
       // Broadcast the updated player positions to all connected clients
       socket.emit("updatePlayerPositions", players);
@@ -33,8 +35,10 @@ function initializeSocket(server, corsOptions) {
     });
 
     socket.on("disconnect", () => {
+      // Display a message to ensure disconnection
       console.log(`Player ${playerId} disconnected`);
       
+      // Remove the disconnected player from the players object {}
       delete players[playerId];
 
       // Broadcast the updated player positions to all connected clients
