@@ -14,6 +14,7 @@ export default class GameScene extends Phaser.Scene {
       this.currentPlayerSpriteSheet = "human01";
 
       this.playerId = "";
+      this.players = {};
     };
 
     init() {
@@ -50,21 +51,29 @@ export default class GameScene extends Phaser.Scene {
     };
 
     createNewPlayer(players){
+
+      // Show players on game including the users player
       for(const p in players){
-        //console.log(p);
         if(p === this.playerId){
           this.player = new Player(this, players[p].x, players[p].y, this.currentPlayerSpriteSheet, this.socket);
           this.player.setUiScene(this.uiscene);
           this.player.setEventListeners();
+          this.players[p] = this.player;
         } else {
-          new Player(this, players[p].x, players[p].y, this.currentPlayerSpriteSheet, this.socket);
+          this.players[p] = new Player(this, players[p].x, players[p].y, this.currentPlayerSpriteSheet, this.socket);
         }
       };
-      //console.log(players);
+      //console.log(this.players);
     };
 
-    getAllPlayers(players){
-      
-    }
+    updatePlayerLocations(players){
+      //console.log(this.players)
+      for (const p in this.players){
+        if(p !== this.playerId){
+          this.players[p].x = players[p].x;
+          this.players[p].y = players[p].y;
+        };
+      };
+    };
     
 };

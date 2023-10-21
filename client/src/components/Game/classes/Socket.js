@@ -45,6 +45,7 @@ export default class Socket {
         this.socket.on("updatePlayerPositions", (players) => {
             this.players = players;
             //console.log(this.players);
+            this.scene.updatePlayerLocations(this.players);
         });
     
         this.socket.on("disconnect", () => {
