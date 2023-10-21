@@ -1,7 +1,6 @@
 import Phaser from 'phaser';
 import Player from '../classes/Player.js';
 import Map from '../classes/Map.js';
-import { config } from '../config/configuration.js';
 import Socket from '../classes/Socket.js';
 
 /**************************************************
@@ -12,9 +11,8 @@ export default class GameScene extends Phaser.Scene {
       super("Game");
       this.currentMap = "map01";
       this.currentPlayerSpriteSheet = "human01";
-      this.playerId = ""; // Initialize to an empty string
+      this.playerId = "";
       this.players = {};
-      this.isPlayersDisplayed = false;
     };
 
     init() {
@@ -45,7 +43,7 @@ export default class GameScene extends Phaser.Scene {
 
         // Update camera to follow the current player
         this.cameras.main.startFollow(this.player);
-      }
+      };
       
       if(this.player){
         this.player.update();
@@ -57,25 +55,20 @@ export default class GameScene extends Phaser.Scene {
     getPlayerId(id) {
       this.playerId = id;
     };
-
-    createNewPlayer(players) {
-      for (const p in players) {
-        if (p !== this.playerId && !this.players[p]) {
-          this.players[p] = new Player(this, 0, 0, this.currentPlayerSpriteSheet, this.socket);
-          this.players[p].setUiScene(this.uiscene);
-          this.players[p].setEventListeners();
-        }
-      }
-    }
   
     updatePlayerLocations(players) {
+      
+      // Loop through all the players sent back from server.
       for (const p in players) {
+        // Make sure the player isn't the player playing before creating a new Player object.
         if (p !== this.playerId) {
+          // Check to make sure the other player(s) have not been created yet.
           if (!this.players[p]) {
             this.players[p] = new Player(this, 0, 0, this.currentPlayerSpriteSheet, this.socket);
             this.players[p].setUiScene(this.uiscene);
             this.players[p].setEventListeners();
           };
+          // Update all the other players (x, y) coordinates
           this.players[p].x = players[p].x;
           this.players[p].y = players[p].y;
         };
@@ -89,5 +82,5 @@ export default class GameScene extends Phaser.Scene {
         };
       };
 
-    }
-}
+    };
+};

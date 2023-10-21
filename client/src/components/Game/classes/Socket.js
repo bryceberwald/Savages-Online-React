@@ -12,9 +12,6 @@ export default class Socket {
     constructor(scene){
         this.socket = null;
         this.scene = scene;
-        this.playerId = "";
-        this.players = {};
-        this.createdPlayers = {};
     };
 
     /******************************
@@ -32,18 +29,11 @@ export default class Socket {
         });
 
         this.socket.on("playerId", (id) => {
-            this.playerId = id;
-            this.scene.getPlayerId(this.playerId);
-        });
-
-        this.socket.on("newPlayer", (players) => {
-            this.players = this.scene.createNewPlayer(players);
+            this.scene.getPlayerId(id);
         });
 
         this.socket.on("updatePlayerPositions", (players) => {
-            this.players = players;
-            //console.log(this.players);
-            this.scene.updatePlayerLocations(this.players);
+            this.scene.updatePlayerLocations(players);
         });
     
         this.socket.on("disconnect", () => {

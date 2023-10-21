@@ -17,12 +17,10 @@ function initializeSocket(server, corsOptions) {
     console.log(`Player ${playerId} connected`);
 
     // Store the player ID in the `players` object
-    players[playerId] = { x: 0, y: 0, onScreen: false };
+    players[playerId] = { x: 0, y: 0 };
 
     // Send the player ID to the connected client
     socket.emit("playerId", playerId);
-
-    socket.emit("newPlayer", players); // new code
 
     // Listen for a change in the players position
     socket.on("playerPosition", (x, y) => {
