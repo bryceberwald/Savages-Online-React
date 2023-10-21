@@ -57,7 +57,6 @@ export default class GameScene extends Phaser.Scene {
     };
   
     updatePlayerLocations(players) {
-      
       // Loop through all the players sent back from server.
       for (const p in players) {
         // Make sure the player isn't the player playing before creating a new Player object.
@@ -81,6 +80,6 @@ export default class GameScene extends Phaser.Scene {
           delete this.players[p];
         };
       };
-
     };
+    
 };
