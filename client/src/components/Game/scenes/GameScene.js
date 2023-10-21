@@ -10,11 +10,10 @@ import Socket from '../classes/Socket.js';
 export default class GameScene extends Phaser.Scene {
     constructor() {
       super("Game");
-      this.currentPlayer = null;
-      this.players = {};
-      this.playerId = "";
       this.currentMap = "map01";
       this.currentPlayerSpriteSheet = "human01";
+
+      this.playerId = "";
     };
 
     init() {
@@ -46,38 +45,26 @@ export default class GameScene extends Phaser.Scene {
 
     };
 
-    showPlayers(players){
-
-      for(const p in players){
-        //console.log(p)
-        //console.log(this.playerId)
-        //console.log(players[p])
-        if(p !== this.playerId){
-          new Player(this, players[p].x, players[p].y, this.currentPlayerSpriteSheet, this.socket);
-            //.setEventListeners();
-          console.log("Added new player.")
-        };
-
-      };
-
-    };
-
-    createNewPlayer(){
-      this.player = new Player(this, config.width / 2, config.height / 2, this.currentPlayerSpriteSheet, this.socket);
-      this.player.setUiScene(this.uiscene);
-      this.player.setEventListeners();
-    };
-
-    getCurrentPlayerId(id){
+    getPlayerId(id) {
       this.playerId = id;
     };
 
-    getCurrentPlayer(player) {
-      this.currentPlayer = player;
+    createNewPlayer(players){
+      for(const p in players){
+        //console.log(p);
+        if(p === this.playerId){
+          this.player = new Player(this, players[p].x, players[p].y, this.currentPlayerSpriteSheet, this.socket);
+          this.player.setUiScene(this.uiscene);
+          this.player.setEventListeners();
+        } else {
+          new Player(this, players[p].x, players[p].y, this.currentPlayerSpriteSheet, this.socket);
+        }
+      };
+      //console.log(players);
     };
 
     getAllPlayers(players){
-      this.players = players;
-    };
+      
+    }
     
 };

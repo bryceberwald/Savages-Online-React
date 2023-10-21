@@ -29,22 +29,22 @@ export default class Socket {
 
         this.socket.on("connect", () => {
             console.log("Connected to server");
-            this.scene.createNewPlayer();
         });
 
         this.socket.on("playerId", (id) => {
             this.playerId = id;
-            this.scene.getCurrentPlayerId(id);
+            this.scene.getPlayerId(this.playerId);
+        });
+
+        this.socket.on("newPlayer", (players) => {
+            this.players = players;
+            //console.log(this.players);
+            this.scene.createNewPlayer(this.players);
         });
 
         this.socket.on("updatePlayerPositions", (players) => {
             this.players = players;
-            this.player = this.players[this.playerId];
-
-            this.scene.showPlayers(this.players); // New code
-
-            this.scene.getCurrentPlayer(this.players[this.playerId]);
-            this.scene.getAllPlayers(this.players);
+            //console.log(this.players);
         });
     
         this.socket.on("disconnect", () => {
