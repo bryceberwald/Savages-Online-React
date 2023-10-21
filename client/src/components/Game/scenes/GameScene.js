@@ -42,6 +42,7 @@ export default class GameScene extends Phaser.Scene {
         this.player.setUiScene(this.uiscene);
         this.player.setEventListeners();
         this.players[this.playerId] = this.player;
+
         // Update camera to follow the current player
         this.cameras.main.startFollow(this.player);
       }
@@ -54,7 +55,7 @@ export default class GameScene extends Phaser.Scene {
     };
 
     getPlayerId(id) {
-      this.playerId = id; // Assign the playerId when it's received
+      this.playerId = id;
     };
 
     createNewPlayer(players) {
@@ -74,10 +75,19 @@ export default class GameScene extends Phaser.Scene {
             this.players[p] = new Player(this, 0, 0, this.currentPlayerSpriteSheet, this.socket);
             this.players[p].setUiScene(this.uiscene);
             this.players[p].setEventListeners();
-          }
+          };
           this.players[p].x = players[p].x;
           this.players[p].y = players[p].y;
-        }
-      }
+        };
+      };
+
+      // Remove disconnected players
+      for (const p in this.players) {
+        if (!players[p]) {
+          this.players[p].destroy();
+          delete this.players[p];
+        };
+      };
+
     }
 }
