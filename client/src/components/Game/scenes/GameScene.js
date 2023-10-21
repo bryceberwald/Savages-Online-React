@@ -12,9 +12,9 @@ export default class GameScene extends Phaser.Scene {
       super("Game");
       this.currentMap = "map01";
       this.currentPlayerSpriteSheet = "human01";
-
-      this.playerId = "";
+      this.playerId = ""; // Initialize to an empty string
       this.players = {};
+      this.isPlayersDisplayed = false;
     };
 
     init() {
@@ -36,44 +36,48 @@ export default class GameScene extends Phaser.Scene {
     };
 
     update() {
-      //console.log("GameScene update() function is called.");
+      // Check if the user has control of a player
+      if (this.playerId && !this.player) {
+        this.player = new Player(this, 0, 0, this.currentPlayerSpriteSheet, this.socket);
+        this.player.setUiScene(this.uiscene);
+        this.player.setEventListeners();
+        this.players[this.playerId] = this.player;
+        // Update camera to follow the current player
+        this.cameras.main.startFollow(this.player);
+      }
       
       if(this.player){
         this.player.update();
       } else {
         console.log("Initializing player still...");
       };
-
     };
 
     getPlayerId(id) {
-      this.playerId = id;
+      this.playerId = id; // Assign the playerId when it's received
     };
 
-    createNewPlayer(players){
-
-      // Show players on game including the users player
-      for(const p in players){
-        if(p === this.playerId){
-          this.player = new Player(this, players[p].x, players[p].y, this.currentPlayerSpriteSheet, this.socket);
-          this.player.setUiScene(this.uiscene);
-          this.player.setEventListeners();
-          this.players[p] = this.player;
-        } else {
-          this.players[p] = new Player(this, players[p].x, players[p].y, this.currentPlayerSpriteSheet, this.socket);
+    createNewPlayer(players) {
+      for (const p in players) {
+        if (p !== this.playerId && !this.players[p]) {
+          this.players[p] = new Player(this, 0, 0, this.currentPlayerSpriteSheet, this.socket);
+          this.players[p].setUiScene(this.uiscene);
+          this.players[p].setEventListeners();
         }
-      };
-      //console.log(this.players);
-    };
-
-    updatePlayerLocations(players){
-      //console.log(this.players)
-      for (const p in this.players){
-        if(p !== this.playerId){
+      }
+    }
+  
+    updatePlayerLocations(players) {
+      for (const p in players) {
+        if (p !== this.playerId) {
+          if (!this.players[p]) {
+            this.players[p] = new Player(this, 0, 0, this.currentPlayerSpriteSheet, this.socket);
+            this.players[p].setUiScene(this.uiscene);
+            this.players[p].setEventListeners();
+          }
           this.players[p].x = players[p].x;
           this.players[p].y = players[p].y;
-        };
-      };
-    };
-    
-};
+        }
+      }
+    }
+}

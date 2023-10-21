@@ -46,7 +46,7 @@ export default class Player extends Phaser.Physics.Arcade.Image {
       scene.add.existing(this);
 
       // Add a camera to follow the player in the GameScene
-      scene.cameras.main.startFollow(this, true);
+      //scene.cameras.main.startFollow(this, true);
 
     };
 

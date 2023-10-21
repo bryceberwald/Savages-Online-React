@@ -12,9 +12,9 @@ export default class Socket {
     constructor(scene){
         this.socket = null;
         this.scene = scene;
-        this.player = {};
-        this.players = {};
         this.playerId = "";
+        this.players = {};
+        this.createdPlayers = {};
     };
 
     /******************************
@@ -37,9 +37,7 @@ export default class Socket {
         });
 
         this.socket.on("newPlayer", (players) => {
-            this.players = players;
-            //console.log(this.players);
-            this.scene.createNewPlayer(this.players);
+            this.players = this.scene.createNewPlayer(players);
         });
 
         this.socket.on("updatePlayerPositions", (players) => {
