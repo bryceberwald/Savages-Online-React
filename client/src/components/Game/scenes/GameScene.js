@@ -57,7 +57,7 @@ export default class GameScene extends Phaser.Scene {
     };
   
     updatePlayerLocations(players) {
-      console.log(players)
+      //console.log(players)
       // Loop through all the players sent back from server.
       for (const p in players) {
         // Make sure the player isn't the player playing before creating a new Player object.
@@ -71,8 +71,7 @@ export default class GameScene extends Phaser.Scene {
           // Update all the other players (x, y) coordinates
           this.players[p].x = players[p].x;
           this.players[p].y = players[p].y;
-          //this.players[p].setPlayerFrame(players[p].frame);
-
+          this.players[p].setTexture(this.currentPlayerSpriteSheet, players[p].frame);
         };
       };
 
