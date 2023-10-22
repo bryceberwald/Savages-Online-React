@@ -13,6 +13,7 @@ export default class GameScene extends Phaser.Scene {
       this.currentPlayerSpriteSheet = "human01";
       this.playerId = "";
       this.players = {};
+      this.chatMessages = {};
     };
 
     init() {
@@ -44,6 +45,21 @@ export default class GameScene extends Phaser.Scene {
         // Update camera to follow the current player
         this.cameras.main.startFollow(this.player);
       };
+
+      for(const id in this.chatMessages){
+        //console.log(this.chatMessages[id].message)
+        for(const p in this.players){
+          if(p === id && this.chatMessages[id].message !== ""){
+            console.log(`Me: ${this.chatMessages[id].message}`)
+          }
+          if(p !== id && this.chatMessages[id].message !== ""){
+            console.log(`Other: ${this.chatMessages[id].message}`)
+          }
+        }
+        this.chatMessages[id].message = "";
+        
+      }
+      
       
       if(this.player){
         this.player.update();
@@ -55,6 +71,15 @@ export default class GameScene extends Phaser.Scene {
     getPlayerId(id) {
       this.playerId = id;
     };
+    
+
+    getChatMessageQueue(messageQueue) {
+      console.log(messageQueue);
+      this.chatMessages = messageQueue;
+    };
+
+    
+    
   
     updatePlayerLocations(players) {
       //console.log(players)

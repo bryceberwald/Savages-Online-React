@@ -66,7 +66,10 @@ export default class Player extends Phaser.Physics.Arcade.Image {
       this.chatMessage = this.uiscene.getChatMessage()
 
       // Output the chat message to the console
-      //this.displayChatMessage();
+      if(this.chatMessage !== ""){
+        //this.displayChatMessage();
+        this.socket.handleSocketEmitPlayerChatMessage(this.chatMessage);
+      }
 
       // Update chat message to empty string after usage
       this.uiscene.setChatMessageEmpty();
@@ -108,8 +111,8 @@ export default class Player extends Phaser.Physics.Arcade.Image {
     * This function displays the
     * users chat message.
     ******************************/
-    displayChatMessage(){
-      console.log(this.chatMessage);
+    displayChatMessage(msg){
+      console.log(msg);
     };
 
     /******************************
@@ -140,9 +143,5 @@ export default class Player extends Phaser.Physics.Arcade.Image {
     ******************************/
     onChatMessage(msg) {
       this.chatMessage = msg;
-    };
-
-    setPlayerFrame(frame){
-      this.frame = frame;
     };
 };
