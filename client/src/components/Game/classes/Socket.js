@@ -47,8 +47,8 @@ export default class Socket {
     * position within the 'Player'
     * class.
     ******************************/
-    handleSocketEmitPlayerPosition(x, y){
-        this.socket.emit("playerPosition", x, y);
+    handleSocketEmitPlayerPosition(x, y, frame){
+        this.socket.emit("playerPosition", x, y, frame.name);
     };
 
 };

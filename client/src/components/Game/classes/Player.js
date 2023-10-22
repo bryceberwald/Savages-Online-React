@@ -72,7 +72,7 @@ export default class Player extends Phaser.Physics.Arcade.Image {
       this.uiscene.setChatMessageEmpty();
 
       // Handle socketIO player position 'emit'
-      this.socket.handleSocketEmitPlayerPosition(this.x, this.y);
+      this.socket.handleSocketEmitPlayerPosition(this.x, this.y, this.frame);
     };
 
     /******************************
@@ -142,4 +142,7 @@ export default class Player extends Phaser.Physics.Arcade.Image {
       this.chatMessage = msg;
     };
 
+    setPlayerFrame(frame){
+      this.frame = frame;
+    };
 };
