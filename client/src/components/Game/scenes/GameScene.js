@@ -51,14 +51,15 @@ export default class GameScene extends Phaser.Scene {
         for(const p in this.players){
           if(p === id && this.chatMessages[id].message !== ""){
             console.log(`Me: ${this.chatMessages[id].message}`)
+            this.chatMessages[id].message = "";
           }
           if(p !== id && this.chatMessages[id].message !== ""){
             console.log(`Other: ${this.chatMessages[id].message}`)
+            this.chatMessages[id].message = "";
           }
         }
-        this.chatMessages[id].message = "";
-        
       }
+      this.chatMessages = {};
       
       
       if(this.player){
