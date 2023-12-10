@@ -70,6 +70,11 @@ export default class Player extends Phaser.Physics.Arcade.Image {
         this.socket.handleSocketEmitChatMessage(this.chatMessage);
       };
 
+      if(this.chatText){
+        this.chatText.x = this.x;
+        this.chatText.y = this.y - 40;
+      }
+
       // Update chat message to empty string after usage
       this.uiscene.setChatMessageEmpty();
 
@@ -117,7 +122,7 @@ export default class Player extends Phaser.Physics.Arcade.Image {
       if (message && message !== "") {
         // Create a text label above the player
         if (!this.chatText) {
-          this.chatText = this.scene.add.text(this.x, this.y - 30, message, {
+          this.chatText = this.scene.add.text(this.x, this.y - 40, message, {
             font: "16px Arial",
             fill: "#ffffff",
             backgroundColor: "#000000",
