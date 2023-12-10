@@ -2,7 +2,6 @@ const socketIo = require("socket.io");
 const { v4: uuidv4 } = require('uuid');
 
 const players = {};
-const chatMessageQueue = {};
 
 function initializeSocket(server, corsOptions) {
   const io = socketIo(server, {
@@ -23,11 +22,6 @@ function initializeSocket(server, corsOptions) {
     // Send the player ID to the connected client
     socket.emit("playerId", playerId);
 
-    socket.on("chatMessage", (data) => {
-      chatMessageQueue[data.id] = { message: data.msg }
-      socket.emit("displayChatMessage", chatMessageQueue);
-    });
-
     // Listen for a change in the players position
     socket.on("playerPosition", (x, y, frame) => {
 
@@ -47,8 +41,6 @@ function initializeSocket(server, corsOptions) {
       
       // Remove the disconnected player from the players object {}
       delete players[playerId];
-
-      delete chatMessageQueue[playerId];
 
       // Broadcast the updated player positions to all connected clients
       socket.emit("updatePlayerPositions", players);

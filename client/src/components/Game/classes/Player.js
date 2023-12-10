@@ -44,10 +44,6 @@ export default class Player extends Phaser.Physics.Arcade.Image {
 
       // Add this player to the GameScene
       scene.add.existing(this);
-
-      // Add a camera to follow the player in the GameScene
-      //scene.cameras.main.startFollow(this, true);
-
     };
 
     /******************************
@@ -67,9 +63,8 @@ export default class Player extends Phaser.Physics.Arcade.Image {
 
       // Output the chat message to the console
       if(this.chatMessage !== ""){
-        //this.displayChatMessage();
-        this.socket.handleSocketEmitPlayerChatMessage(this.chatMessage);
-      }
+        this.displayChatMessage(this.chatMessage);
+      };
 
       // Update chat message to empty string after usage
       this.uiscene.setChatMessageEmpty();

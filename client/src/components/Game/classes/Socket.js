@@ -37,10 +37,6 @@ export default class Socket {
         this.socket.on("updatePlayerPositions", (players) => {
             this.scene.updatePlayerLocations(players);
         });
-
-        this.socket.on("displayChatMessage", (messageQueue) => {
-            this.scene.getChatMessageQueue(messageQueue);
-        });
     
         this.socket.on("disconnect", () => {
             console.log("Disconnected from server");
@@ -55,13 +51,6 @@ export default class Socket {
     ******************************/
     handleSocketEmitPlayerPosition(x, y, frame){
         this.socket.emit("playerPosition", x, y, frame.name);
-    };
-
-    // handleSocketEmitPlayerChatMessage(msg){
-    //     this.socket.emit("chatMessage", msg);
-    // };
-    handleSocketEmitPlayerChatMessage(msg) {
-        this.socket.emit("chatMessage", { id: this.playerId, msg });
     };
 
 };

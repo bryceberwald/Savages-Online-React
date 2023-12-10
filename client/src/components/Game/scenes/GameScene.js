@@ -7,18 +7,22 @@ import Socket from '../classes/Socket.js';
  * GameScene class
  *************************************************/
 export default class GameScene extends Phaser.Scene {
+    /****************************
+    * constructor() fn
+    ****************************/
     constructor() {
       super("Game");
       this.currentMap = "map01";
       this.currentPlayerSpriteSheet = "human01";
       this.playerId = "";
       this.players = {};
-      this.chatMessages = {};
     };
 
+    /****************************
+    * init() fn
+    ****************************/
     init() {
       console.log("GameScene init() function is called.");
-      
       this.socket = new Socket(this);
       this.socket.initializeSocketIO();
       this.map = new Map(this, this.currentMap);
@@ -26,14 +30,23 @@ export default class GameScene extends Phaser.Scene {
       this.uiscene = this.scene.get('Ui');
     };
 
+    /****************************
+    * preload() fn
+    ****************************/
     preload() {
       console.log("GameScene preload() function is called.");
     };
 
+    /****************************
+    * create() fn
+    ****************************/
     create() {
       console.log("GameScene create() function is called.");
     };
 
+    /****************************
+    * update() fn
+    ****************************/
     update() {
       // Check if the user has control of a player
       if (this.playerId && !this.player) {
@@ -45,22 +58,6 @@ export default class GameScene extends Phaser.Scene {
         // Update camera to follow the current player
         this.cameras.main.startFollow(this.player);
       };
-
-      for(const id in this.chatMessages){
-        //console.log(this.chatMessages[id].message)
-        for(const p in this.players){
-          if(p === id && this.chatMessages[id].message !== ""){
-            console.log(`Me: ${this.chatMessages[id].message}`)
-            this.chatMessages[id].message = "";
-          }
-          if(p !== id && this.chatMessages[id].message !== ""){
-            console.log(`Other: ${this.chatMessages[id].message}`)
-            this.chatMessages[id].message = "";
-          }
-        }
-      }
-      this.chatMessages = {};
-      
       
       if(this.player){
         this.player.update();
@@ -69,21 +66,20 @@ export default class GameScene extends Phaser.Scene {
       };
     };
 
+    /****************************
+    * getPlayerId() fn - gets
+    * called in Socket.js file.
+    ****************************/
     getPlayerId(id) {
       this.playerId = id;
     };
-    
 
-    getChatMessageQueue(messageQueue) {
-      console.log(messageQueue);
-      this.chatMessages = messageQueue;
-    };
-
-    
-    
-  
+    /****************************
+    * updatePlayerLocations(p)
+    * fn - gets called in 
+    * Socket.js file.
+    ****************************/
     updatePlayerLocations(players) {
-      //console.log(players)
       // Loop through all the players sent back from server.
       for (const p in players) {
         // Make sure the player isn't the player playing before creating a new Player object.
