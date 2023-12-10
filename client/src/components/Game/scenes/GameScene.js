@@ -75,13 +75,32 @@ export default class GameScene extends Phaser.Scene {
     };
 
     /****************************
-    * displayChatMessages() fn - 
-    * gets called in Socket.js 
-    * file.
-    ****************************/
-    displayChatMessages(players){
-      console.log(players);
+     * displayChatMessages() fn - 
+     * gets called in Socket.js 
+     * file.
+     ****************************/
+    // displayChatMessages(players) {
+    //   console.log(players);
+    //   // Loop through each player in the players object
+    //   Object.keys(players).forEach((playerId) => {
+    //     const player = players[playerId];
+    //     console.log(`Player ${playerId} chat message: ${player.chatMessage}`);
+    //   });
+    // }
+    displayChatMessages(players) {
+      for (const playerId in players) {
+        
+        const player = players[playerId];
+        const currentPlayer = this.players[playerId];
+    
+        if (currentPlayer) {
+          currentPlayer.displayChatMessage(player.chatMessage);
+        };
+
+      };
+
     };
+
 
     /****************************
     * updatePlayerLocations(p)

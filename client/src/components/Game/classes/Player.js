@@ -63,7 +63,10 @@ export default class Player extends Phaser.Physics.Arcade.Image {
 
       // Output the chat message to the console
       if(this.chatMessage !== ""){
-        this.displayChatMessage(this.chatMessage);
+        // Display chat message above the player
+        //this.displayChatMessage(this.chatMessage);
+
+        // Emit new chat message data to the players object on server-side.
         this.socket.handleSocketEmitChatMessage(this.chatMessage);
       };
 
@@ -103,13 +106,41 @@ export default class Player extends Phaser.Physics.Arcade.Image {
  
     };
 
-    /******************************
-    * This function displays the
-    * users chat message.
-    ******************************/
-    displayChatMessage(msg){
-      console.log(msg);
+
+    /****************************
+     * displayChatMessage() fn - 
+     * displays the chat message 
+     * above the player.
+     ****************************/
+    displayChatMessage(message) {
+      // Ensure there is a message to display
+      if (message && message !== "") {
+        // Create a text label above the player
+        if (!this.chatText) {
+          this.chatText = this.scene.add.text(this.x, this.y - 30, message, {
+            font: "16px Arial",
+            fill: "#ffffff",
+            backgroundColor: "#000000",
+            padding: {
+              x: 5,
+              y: 5
+            }
+          }).setOrigin(0.5, 1); // Set the origin to the bottom center
+        } else {
+          // Update existing text with the new message
+          this.chatText.setText(message);
+        };
+
+        // Set a timer to remove the text after a certain duration (e.g., 3000 milliseconds)
+        this.scene.time.delayedCall(3000, () => {
+          if (this.chatText) {
+            this.chatText.destroy();
+            this.chatText = null;
+          };
+        });
+      };
     };
+
 
     /******************************
     * This function listens for

@@ -57,6 +57,12 @@ export default class Socket {
         this.socket.emit("playerPosition", x, y, frame.name);
     };
 
+    /******************************
+    * This function will handle the
+    * socket.emit for the players
+    * chat msg within the 'Player'
+    * class.
+    ******************************/
     handleSocketEmitChatMessage(msg){
         this.socket.emit("chatMessage", msg);
     };
