@@ -34,6 +34,10 @@ export default class Socket {
             this.scene.getPlayerId(id);
         });
 
+        this.socket.on("displayChatMessage", (players) => {
+            this.scene.displayChatMessages(players);
+        });
+
         this.socket.on("updatePlayerPositions", (players) => {
             this.scene.updatePlayerLocations(players);
         });
@@ -51,6 +55,10 @@ export default class Socket {
     ******************************/
     handleSocketEmitPlayerPosition(x, y, frame){
         this.socket.emit("playerPosition", x, y, frame.name);
+    };
+
+    handleSocketEmitChatMessage(msg){
+        this.socket.emit("chatMessage", msg);
     };
 
 };

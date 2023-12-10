@@ -64,6 +64,7 @@ export default class Player extends Phaser.Physics.Arcade.Image {
       // Output the chat message to the console
       if(this.chatMessage !== ""){
         this.displayChatMessage(this.chatMessage);
+        this.socket.handleSocketEmitChatMessage(this.chatMessage);
       };
 
       // Update chat message to empty string after usage
