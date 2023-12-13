@@ -123,7 +123,8 @@ export default class Player extends Phaser.Physics.Arcade.Image {
         // Create a text label above the player
         if (!this.chatText) {
           this.chatText = this.scene.add.text(this.x, this.y - 40, message, {
-            font: "16px Arial",
+            fontSize: "16px",
+            fontFamily: "Arial",
             fill: "#ffffff",
             backgroundColor: "#000000",
             padding: {

@@ -80,11 +80,15 @@ export default class GameScene extends Phaser.Scene {
      * file.
      ****************************/
     displaySentChatMessage(message, playerId) {
-      console.log(message)
-      console.log(playerId)
-      this.players[playerId].displayChatMessage(message);
-    };
 
+      console.log(message);
+      console.log(playerId);
+
+      this.players[playerId].displayChatMessage(message);
+
+      console.log(this.players);
+
+    };
 
     /****************************
     * updatePlayerLocations(p)

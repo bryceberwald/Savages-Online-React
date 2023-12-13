@@ -2,6 +2,7 @@ const socketIo = require("socket.io");
 const { v4: uuidv4 } = require('uuid');
 
 const players = {};
+const sockets = {}
 
 function initializeSocket(server, corsOptions) {
   const io = socketIo(server, {
@@ -18,13 +19,14 @@ function initializeSocket(server, corsOptions) {
 
     // Store the player ID in the `players` object
     players[playerId] = { x: 0, y: 0, frame: 0 };
+    sockets[playerId] = socket
 
     // Send the player ID to the connected client
     socket.emit("playerId", playerId);
 
     // Listen for a new chat message to be emitted from the player.
     socket.on("chatMessage", (msg) => {
-      socket.emit("displayChatMessage", msg, playerId);
+      Object.values(sockets).forEach(sock => sock.emit("displayChatMessage", msg, playerId))
     });
 
     // Listen for a change in the players position
