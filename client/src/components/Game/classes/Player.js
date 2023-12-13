@@ -71,8 +71,8 @@ export default class Player extends Phaser.Physics.Arcade.Image {
       };
 
       if(this.chatText){
-        this.chatText.x = this.x;
-        this.chatText.y = this.y - 40;
+        this.chatText.x = this.body.x + 65;
+        this.chatText.y = this.body.y + 25;
       }
 
       // Update chat message to empty string after usage
