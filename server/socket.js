@@ -17,15 +17,14 @@ function initializeSocket(server, corsOptions) {
     console.log(`Player ${playerId} connected`);
 
     // Store the player ID in the `players` object
-    players[playerId] = { x: 0, y: 0, frame: 0, chatMessage: "" };
+    players[playerId] = { x: 0, y: 0, frame: 0 };
 
     // Send the player ID to the connected client
     socket.emit("playerId", playerId);
 
     // Listen for a new chat message to be emitted from the player.
     socket.on("chatMessage", (msg) => {
-      players[playerId].chatMessage = msg;
-      socket.emit("displayChatMessage", (players) );
+      socket.emit("displayChatMessage", msg, playerId);
     });
 
     // Listen for a change in the players position
