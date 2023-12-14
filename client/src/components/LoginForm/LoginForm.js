@@ -26,6 +26,10 @@ function LoginFormButton({ username, password }) {
           const user = data.user;
           console.log('Login successful:', user);
           login();
+          
+          // Save user information to localStorage when the user logs in
+          localStorage.setItem('user', JSON.stringify(user));
+
           navigate('/play');
         } else {
           const data = await response.json();
