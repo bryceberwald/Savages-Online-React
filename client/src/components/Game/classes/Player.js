@@ -11,6 +11,15 @@ export default class Player extends Phaser.Physics.Arcade.Image {
     constructor(scene, x, y, key, socket) {
       super(scene, x, y);
 
+      // Retrieve user information from localStorage when the app loads
+      const storedUser = localStorage.getItem('user');
+
+      this.loginData = storedUser ? JSON.parse(storedUser) : null;
+      console.log(this.loginData);
+
+      this.username = this.loginData.username;
+      console.log(this.username);
+
       // Create a variable that holds the keyboard input
       this.cursors = this.scene.input.keyboard.createCursorKeys();
 
@@ -44,6 +53,7 @@ export default class Player extends Phaser.Physics.Arcade.Image {
 
       // Add this player to the GameScene
       scene.add.existing(this);
+
     };
 
     /******************************
