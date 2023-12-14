@@ -111,6 +111,9 @@ export default class GameScene extends Phaser.Scene {
           this.players[p].x = players[p].x;
           this.players[p].y = players[p].y;
           this.players[p].setTexture(this.currentPlayerSpriteSheet, players[p].frame);
+
+          // Update the other players chat messages locations if they have one.
+          this.players[p].updateChatMessagePosition(players[p].x, players[p].y)
         };
       };
 

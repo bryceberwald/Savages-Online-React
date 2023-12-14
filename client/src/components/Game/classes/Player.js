@@ -147,6 +147,17 @@ export default class Player extends Phaser.Physics.Arcade.Image {
       };
     };
 
+    /******************************
+    * This function will update the
+    * players chat location if the
+    * chat message exists.
+    ******************************/
+    updateChatMessagePosition(x, y){
+      if(this.chatText){
+        this.chatText.x = x;
+        this.chatText.y = y - 40;
+      };
+    };
 
     /******************************
     * This function listens for
