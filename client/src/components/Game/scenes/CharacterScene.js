@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import PlayCharacterButton from '../classes/CharacterUi/PlayCharacterButton';
+import AddCharacterButton from '../classes/CharacterUi/AddCharacterButton'
 import DeleteCharacterButton from '../classes/CharacterUi/DeleteCharacterButton';
 import { config } from '../config/configuration';
 
@@ -8,7 +9,7 @@ import { config } from '../config/configuration';
  *************************************************/
 export default class CharacterScene extends Phaser.Scene {
     /******************************
-     * 
+     * constructor() - fn
      ******************************/
     constructor() {
         super("Character");
@@ -17,7 +18,7 @@ export default class CharacterScene extends Phaser.Scene {
     };
 
     /******************************
-     * 
+     * create() - fn
      ******************************/
     create() {
         // Add the pre game background image
@@ -30,9 +31,21 @@ export default class CharacterScene extends Phaser.Scene {
         );
 
         this.createCharacterSlots();
+
+        this.addButton = new AddCharacterButton(
+            this, 
+            config.width / 2,
+            config.height - 50, 
+            'button01_unpressed', 
+            'button01_pressed', 
+            'add a character'
+        );
+        this.addButton.setScale(0.5);
     };
 
-
+    /******************************
+     * createCharacterSlots() - fn
+     ******************************/
     createCharacterSlots(){
         // Set the width and height of each white square box
         const boxWidth = 150;
