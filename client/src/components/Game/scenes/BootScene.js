@@ -117,7 +117,7 @@ export default class BootScene extends Phaser.Scene {
         console.log("BootScene create() function called.");
 
         // Switch to the TitleScene
-        this.scene.start("Title");
+        this.scene.start("Character");
     };
     
 };
