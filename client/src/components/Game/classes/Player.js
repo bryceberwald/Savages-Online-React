@@ -18,7 +18,18 @@ export default class Player extends Phaser.Physics.Arcade.Image {
       console.log(this.loginData);
 
       this.username = this.loginData.username;
-      console.log(this.username);
+      this.x = this.loginData.character.x;
+      this.y = this.loginData.character.y;
+      this.frame = this.loginData.character.frame;
+      this.level = this.loginData.character.level;
+
+      this.playerData = {
+        x: this.x,
+        y: this.y,
+        frame: this.frame,
+        level: this.level,
+      };
+      console.log(this.playerData);
 
       // Create a variable that holds the keyboard input
       this.cursors = this.scene.input.keyboard.createCursorKeys();
@@ -34,7 +45,7 @@ export default class Player extends Phaser.Physics.Arcade.Image {
       this.chatMessage = "";
 
       // Set the initial frame of the sprite sheet being used
-      this.frame = 0;
+      //this.frame = 0;
 
       // Set the velocity of how fast the player should move
       this.velocity = 500;
@@ -89,7 +100,7 @@ export default class Player extends Phaser.Physics.Arcade.Image {
       this.uiscene.setChatMessageEmpty();
 
       // Handle socketIO player position 'emit'
-      this.socket.handleSocketEmitPlayerPosition(this.x, this.y, this.frame);
+      this.socket.handleSocketEmitPlayerPosition(this.x, this.y, this.frame, this.username);
     };
 
     /******************************

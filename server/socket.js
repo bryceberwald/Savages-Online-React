@@ -1,4 +1,5 @@
 const socketIo = require("socket.io");
+const User = require('./models/User');
 const { v4: uuidv4 } = require('uuid');
 
 const players = {};
@@ -30,17 +31,29 @@ function initializeSocket(server, corsOptions) {
     });
 
     // Listen for a change in the players position
-    socket.on("playerPosition", (x, y, frame) => {
-
-      // Update players coordinates in the players objects {x, y}
-      players[playerId].x = x;
-      players[playerId].y = y;
-      players[playerId].frame = frame;
-
-      // Broadcast the updated player positions to all connected clients
-      socket.emit("updatePlayerPositions", players);
-
-    });
+    socket.on("playerPosition", async (x, y, frame, username) => {
+      try {
+          // Update players coordinates in the players objects {x, y}
+          players[playerId].x = x;
+          players[playerId].y = y;
+          players[playerId].frame = frame;
+  
+          const user = await User.findOne({username});
+  
+          if (user) {
+              user.character.x = x;
+              user.character.y = y;
+              user.character.frame = frame;
+              await user.save();
+          };
+  
+          // Broadcast the updated player positions to all connected clients
+          socket.emit("updatePlayerPositions", players);
+      } catch (error) {
+          console.error("Error updating player position:", error);
+      }
+  });
+  
 
     socket.on("disconnect", () => {
       // Display a message to ensure disconnection

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const User = require('../models/user'); // Import the User model
+const User = require('../models/User'); // Import the User model
 
 // Define a POST route for user login
 router.post('/', async (req, res) => {
