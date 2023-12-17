@@ -27,6 +27,7 @@ export default class Socket {
 
         this.socket.on("connect", () => {
             console.log("Connected to server");
+            localStorage.setItem('startGame', false);
         });
 
         this.socket.on("playerId", (id) => {

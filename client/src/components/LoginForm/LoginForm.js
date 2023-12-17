@@ -24,11 +24,14 @@ function LoginFormButton({ username, password }) {
         if (response.status === 200) {
           const data = await response.json();
           const user = data.user;
-          console.log('Login successful:', user);
+          
+          //console.log('Login successful:', user);
+          
           login();
           
           // Save user information to localStorage when the user logs in
           localStorage.setItem('user', JSON.stringify(user));
+          localStorage.setItem('startGame', true);
 
           navigate('/play');
         } else {
