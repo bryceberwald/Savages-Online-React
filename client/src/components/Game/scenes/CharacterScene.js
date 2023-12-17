@@ -1,7 +1,7 @@
 import Phaser from 'phaser';
-import PlayCharacterButton from '../classes/CharacterUi/PlayCharacterButton';
-import AddCharacterButton from '../classes/CharacterUi/AddCharacterButton'
-import DeleteCharacterButton from '../classes/CharacterUi/DeleteCharacterButton';
+import PlayCharacterButton from '../classes/buttons/PlayCharacterButton';
+import AddCharacterButton from '../classes/buttons/AddCharacterButton'
+import DeleteCharacterButton from '../classes/buttons/DeleteCharacterButton';
 import { config } from '../config/configuration';
 
 /**************************************************
