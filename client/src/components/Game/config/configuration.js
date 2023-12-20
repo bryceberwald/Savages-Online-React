@@ -1,8 +1,6 @@
 import Phaser from "phaser";
-//import InputTextPlugin from 'phaser3-rex-plugins/plugins/inputtext-plugin.js';
 import BootScene from "../scenes/BootScene.js";
-//import TitleScene from "../scenes/TitleScene.js";
-import CharacterScene from "../scenes/CharacterScene.js";
+import TitleScene from "../scenes/TitleScene.js";
 import GameScene from "../scenes/GameScene.js";
 import UiScene from "../scenes/UiScene.js";
 
@@ -16,7 +14,7 @@ export const config = {
   },
   scene: [
     BootScene,
-    CharacterScene,
+    TitleScene,
     GameScene,
     UiScene
   ],

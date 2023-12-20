@@ -121,11 +121,12 @@ export default class BootScene extends Phaser.Scene {
      * update() - fn
      *****************************/
     update(){
-        const startGame = localStorage.getItem('startGame');
+        this.scene.start("Title");
+        // const startGame = localStorage.getItem('startGame');
 
-        if(startGame === 'true'){
-            this.scene.start("Game");
-        };
+        // if(startGame === 'true'){
+        //     this.scene.start("Game");
+        // };
     };
     
 };

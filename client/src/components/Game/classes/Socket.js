@@ -28,6 +28,10 @@ export default class Socket {
         this.socket.on("connect", () => {
             console.log("Connected to server");
             localStorage.setItem('startGame', false);
+            const storedUser = localStorage.getItem('user');
+            const loginData = storedUser ? JSON.parse(storedUser) : null;
+            console.log(loginData.username);
+            this.socket.emit("getUsername", loginData.username);
         });
 
         this.socket.on("playerId", (id) => {
