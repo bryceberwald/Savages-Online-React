@@ -9,43 +9,46 @@ export default class Player extends Phaser.Physics.Arcade.Image {
     * initiation of Player class.
     ******************************/
     constructor(scene, x, y, key, socket) {
+      
       super(scene, x, y);
 
-      // Retrieve user information from localStorage when the app loads
-      const storedUser = localStorage.getItem('user');
-
-      this.loginData = storedUser ? JSON.parse(storedUser) : null;
-      console.log(this.loginData);
-
-      this.username = this.loginData.username;
-      this.x = this.loginData.character.x;
-      this.y = this.loginData.character.y;
-      this.frame = this.loginData.character.frame;
-      this.level = this.loginData.character.level;
-
-      this.playerData = {
-        x: this.x,
-        y: this.y,
-        frame: this.frame,
-        level: this.level,
-      };
-      console.log(this.playerData);
-
-      // Create a variable that holds the keyboard input
-      this.cursors = this.scene.input.keyboard.createCursorKeys();
-
-      // Create variables from constructor to be used within 'Player' class
+      // Create variables from constructor to be used within class.
       this.scene = scene;
       this.playerX = x;
       this.playerY = y;
       this.key = key;
       this.socket = socket;
 
+      // Extract users data from local storage.
+      const storedUser = localStorage.getItem('user');
+      
+      // Parse extracted data of storedUser from local storage.
+      this.loginData = storedUser ? JSON.parse(storedUser) : null;
+
+      // Display the username to the console for testing purposes.
+      console.log(this.loginData);
+
+      // Assign the users loginData to the player.
+      this.username = this.loginData.username;
+      this.x = this.loginData.character.x;
+      this.y = this.loginData.character.y;
+      this.frame = this.loginData.character.frame;
+      this.level = this.loginData.character.level;
+
+      // Create a object {} to valuable hold information.
+      this.playerData = {
+        username: this.username,
+        x: this.x,
+        y: this.y,
+        frame: this.frame,
+        level: this.level,
+      };
+
+      // Create a variable that holds the keyboard input
+      this.cursors = this.scene.input.keyboard.createCursorKeys();
+
       // Create a variable to hold players chat message
       this.chatMessage = "";
-
-      // Set the initial frame of the sprite sheet being used
-      //this.frame = 0;
 
       // Set the velocity of how fast the player should move
       this.velocity = 500;
@@ -82,19 +85,16 @@ export default class Player extends Phaser.Physics.Arcade.Image {
       // Update chat message from the user
       this.chatMessage = this.uiscene.getChatMessage()
 
-      // Output the chat message to the console
+      // Check if there's a chat message
       if(this.chatMessage !== ""){
-        // Display chat message above the player
-        //this.displayChatMessage(this.chatMessage);
-
-        // Emit new chat message data to the players object on server-side.
         this.socket.handleSocketEmitChatMessage(this.chatMessage);
       };
 
+      // Check if there's a current chat text, if so have it follow the player.
       if(this.chatText){
         this.chatText.x = this.body.x + 65;
         this.chatText.y = this.body.y + 25;
-      }
+      };
 
       // Update chat message to empty string after usage
       this.uiscene.setChatMessageEmpty();
@@ -131,7 +131,6 @@ export default class Player extends Phaser.Physics.Arcade.Image {
       };
  
     };
-
 
     /****************************
      * displayChatMessage() fn - 
