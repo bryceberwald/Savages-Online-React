@@ -26,11 +26,23 @@ export default class Socket {
         });
 
         this.socket.on("connect", () => {
+
+            // Display a message to the client.
             console.log("Connected to server");
+
+            // Set 'startGame' to false in local storage.
             localStorage.setItem('startGame', false);
+
+            // Extract users data from local storage.
             const storedUser = localStorage.getItem('user');
+
+            // Parse extracted data of storedUser from local storage.
             const loginData = storedUser ? JSON.parse(storedUser) : null;
+
+            // Display the username to the console for testing purposes.
             console.log(loginData.username);
+
+            // Send the connected users username to the game server.
             this.socket.emit("getUsername", loginData.username);
         });
 
@@ -58,8 +70,8 @@ export default class Socket {
     * position within the 'Player'
     * class.
     ******************************/
-    handleSocketEmitPlayerPosition(x, y, frame, username){
-        this.socket.emit("playerPosition", x, y, frame.name, username);
+    handleSocketEmitPlayerPosition(x, y, frame){
+        this.socket.emit("playerPosition", x, y, frame.name);
     };
 
     /******************************
