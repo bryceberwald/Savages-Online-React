@@ -19,17 +19,29 @@ function initializeSocket(server, corsOptions) {
     // Display a message to console when a player has connected to the socket.
     console.log(`Player ${playerId} connected`);
 
-    // Assign players {} object initial variable values.
-    players[playerId] = { x: 0, y: 0, frame: 0 };
+    // Add the connected players to the sockets object {}
     sockets[playerId] = socket;
 
     // Send the playerId to the game client.
     socket.emit("playerId", playerId);
 
-    // Listen to get the players username to store to the usernames {} object.
-    socket.on("getUsername", user => {
-      usernames[playerId] = user;
-      console.log(usernames);
+    // Listen for the players data to be emitted from the player.
+    socket.on("playerData", async data => {
+
+      // Create a username object {} to store the players username.
+      usernames[playerId] = data.username;
+
+      // Search the database for the player by username.
+      const user = await User.findOne({username: data.username});
+
+      // Check if username was found in database, load player data.
+      if (user) {
+          players[playerId] = { username: data.username, x: user.character.x, y: user.character.y, frame: user.character.frame };
+          await user.save();
+          console.log("player data recieved.");
+          console.log(players[playerId]); // For testing purposes.
+      };
+      
     });
 
     // Listen for a new chat message to be emitted from the player.

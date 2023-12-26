@@ -42,8 +42,8 @@ export default class Socket {
             // Display the username to the console for testing purposes.
             console.log(loginData.username);
 
-            // Send the connected users username to the game server.
-            this.socket.emit("getUsername", loginData.username);
+            // Emit the players data to the server.
+            this.socket.emit("playerData", loginData);
         });
 
         this.socket.on("playerId", (id) => {
