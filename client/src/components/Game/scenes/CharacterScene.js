@@ -13,6 +13,8 @@ export default class CharacterScene extends Phaser.Scene {
      **********************************/
     constructor() {
         super("Character");
+
+        this.characterSlots = {};
     };
 
     /***********************************
@@ -92,7 +94,9 @@ export default class CharacterScene extends Phaser.Scene {
                 startY + i * (boxSize + spacing) - 30,
                 'button01_unpressed',
                 'button01_pressed',
-                'Play'
+                'Play',
+                'PLAY',
+                i + 1
             );
             
             // Scale the button size to 50%
@@ -105,7 +109,9 @@ export default class CharacterScene extends Phaser.Scene {
                 startY + i * (boxSize + spacing) + 10,
                 'button01_unpressed',
                 'button01_pressed',
-                'Delete'
+                'Delete',
+                'DELETE',
+                i + 1
             );
             
             // Scale the button size to 50%
@@ -118,7 +124,9 @@ export default class CharacterScene extends Phaser.Scene {
                 startY + i * (boxSize + spacing) + 50,
                 'button01_unpressed',
                 'button01_pressed',
-                'Create Character'
+                'Create Character',
+                'CREATE',
+                i + 1
             );
             
             // Scale the button size to 50%
