@@ -48,21 +48,22 @@ export default class UiButton extends Phaser.GameObjects.Container {
 
         // Check to see if user clicked on button
         this.button.on('pointerdown', () => {
+
             // Check the action type
             switch (this.action) {
                 case 'PLAY':
                     // TODO: Start the game with character in specific slot number
-                    //console.log('Trying to start the game with character in slot #: ', this.characterSlot);
+                    console.log('Trying to start the game with character in slot #: ', this.characterSlot);
 
-                    if(this.characterSlot === 1) {
-                        this.scene.scene.start('Game', {character: 'character01'});
-                    } else if (this.characterSlot === 2) {
-                        this.scene.scene.start('Game', {character: 'character02'});
-                    } else if (this.characterSlot === 3) {
-                        this.scene.scene.start('Game', {character: 'character03'});
-                    } else {
+                    // if(this.characterSlot === 1) {
+                    //     this.scene.scene.start('Game', {character: 'character01'});
+                    // } else if (this.characterSlot === 2) {
+                    //     this.scene.scene.start('Game', {character: 'character02'});
+                    // } else if (this.characterSlot === 3) {
+                    //     this.scene.scene.start('Game', {character: 'character03'});
+                    // } else {
 
-                    }
+                    // }
 
                     //this.scene.scene.start('Game');
                     break;
@@ -80,13 +81,11 @@ export default class UiButton extends Phaser.GameObjects.Container {
                     break;
             };
         });
-        
       
         // Check to see if user hovered over button
         this.button.on('pointerover', () => {
             this.button.setTexture(this.hoverKey);
         });
-      
 
         // check to see if user stopped hovering over button
         this.button.on('pointerout', () => {
