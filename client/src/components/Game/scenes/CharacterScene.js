@@ -29,6 +29,9 @@ export default class CharacterScene extends Phaser.Scene {
 
         // Add the character selection slots
         this.addCharacterSelectionSlots();
+
+        // Output the characterSlots object to the console
+        console.log(this.characterSlots);
     };
 
     /***********************************
@@ -131,6 +134,15 @@ export default class CharacterScene extends Phaser.Scene {
             
             // Scale the button size to 50%
             createButton.setScale(0.5);
+
+            // Add the character selection slots contents to the characteSolts object {}
+            this.characterSlots[i] = {
+                box: box,
+                playButton: playButton,
+                deleteButton: deleteButton,
+                createButton: createButton
+            };
+            
         };
     };
 

@@ -17,7 +17,6 @@ export default class UiButton extends Phaser.GameObjects.Container {
         this.text = text;
         this.action = action;
         this.characterSlot = characterSlot;
-        this.isCreateButtonClicked = false;
         this.createButton();
         this.scene.add.existing(this); 
     };
@@ -55,25 +54,42 @@ export default class UiButton extends Phaser.GameObjects.Container {
                     // TODO: Start the game with character in specific slot number
                     console.log('Trying to start the game with character in slot #: ', this.characterSlot);
 
-                    // if(this.characterSlot === 1) {
-                    //     this.scene.scene.start('Game', {character: 'character01'});
-                    // } else if (this.characterSlot === 2) {
-                    //     this.scene.scene.start('Game', {character: 'character02'});
-                    // } else if (this.characterSlot === 3) {
-                    //     this.scene.scene.start('Game', {character: 'character03'});
-                    // } else {
-
-                    // }
-
-                    //this.scene.scene.start('Game');
+                    if(this.characterSlot === 1) {
+                        console.log("Trying to start the game with character in slot #: ", this.characterSlot);
+                        //this.scene.scene.start('Game');
+                    } else if (this.characterSlot === 2) {
+                        console.log("Trying to start the game with character in slot #: ", this.characterSlot);
+                    } else if (this.characterSlot === 3) {
+                        console.log("Trying to start the game with character in slot #: ", this.characterSlot)
+                    } else {
+                        console.log("Error loading character...");
+                    };
                     break;
                 case 'DELETE':
                     // TODO: Delete a character from the database in specific slot number
                     console.log('Tring to delete character in slot #: ', this.characterSlot);
+                    if(this.characterSlot === 1) {
+                        console.log("Trying to delete character in slot #: ", this.characterSlot);
+                    } else if(this.characterSlot === 2) {
+                        console.log("Trying to delete character in slot #: ", this.characterSlot);
+                    } else if (this.characterSlot === 3) {
+                        console.log("Trying to delete character in slot #: ", this.characterSlot);
+                    } else {
+                        console.log("Error deleting character...");
+                    };
                     break;
                 case 'CREATE':
                     // TODO: Create a new character in the database in specific slot number
                     console.log('Trying to create a new character in slot #: ', this.characterSlot);
+                    if(this.characterSlot === 1) {
+                        console.log("Trying to create character in slot #: ", this.characterSlot);
+                    } else if(this.characterSlot === 2) {
+                        console.log("Trying to create character in slot #: ", this.characterSlot);
+                    } else if (this.characterSlot === 3) {
+                        console.log("Trying to create character in slot #: ", this.characterSlot);
+                    } else {
+                        console.log("Error creating character....");
+                    };
                     break;
                 default:
                     // Error checking for invalid action type
