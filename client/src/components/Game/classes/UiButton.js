@@ -51,9 +51,7 @@ export default class UiButton extends Phaser.GameObjects.Container {
             // Check the action type
             switch (this.action) {
                 case 'PLAY':
-                    // TODO: Start the game with character in specific slot number
-                    console.log('Trying to start the game with character in slot #: ', this.characterSlot);
-
+                    // TODO: Start the game with a character from the database (With respect to the slot number)
                     if(this.characterSlot === 1) {
                         console.log("Trying to start the game with character in slot #: ", this.characterSlot);
                         //this.scene.scene.start('Game');
@@ -66,8 +64,7 @@ export default class UiButton extends Phaser.GameObjects.Container {
                     };
                     break;
                 case 'DELETE':
-                    // TODO: Delete a character from the database in specific slot number
-                    console.log('Tring to delete character in slot #: ', this.characterSlot);
+                    // TODO: Delete a character from the database (With respect to the slot number)
                     if(this.characterSlot === 1) {
                         console.log("Trying to delete character in slot #: ", this.characterSlot);
                     } else if(this.characterSlot === 2) {
@@ -79,8 +76,7 @@ export default class UiButton extends Phaser.GameObjects.Container {
                     };
                     break;
                 case 'CREATE':
-                    // TODO: Create a new character in the database in specific slot number
-                    console.log('Trying to create a new character in slot #: ', this.characterSlot);
+                    // TODO: Create a new character in the database (With respect to the slot number)
                     if(this.characterSlot === 1) {
                         console.log("Trying to create character in slot #: ", this.characterSlot);
                     } else if(this.characterSlot === 2) {
