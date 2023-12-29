@@ -19,6 +19,7 @@ export default class UiButton extends Phaser.GameObjects.Container {
         this.characterSlot = characterSlot;
         this.createButton();
         this.scene.add.existing(this); 
+        
     };
     
     /******************************
@@ -47,7 +48,6 @@ export default class UiButton extends Phaser.GameObjects.Container {
 
         // Check to see if user clicked on button
         this.button.on('pointerdown', () => {
-
             // Check the action type
             switch (this.action) {
                 case 'PLAY':
@@ -78,7 +78,9 @@ export default class UiButton extends Phaser.GameObjects.Container {
                 case 'CREATE':
                     // TODO: Create a new character in the database (With respect to the slot number)
                     if(this.characterSlot === 1) {
+                        
                         console.log("Trying to create character in slot #: ", this.characterSlot);
+    
                     } else if(this.characterSlot === 2) {
                         console.log("Trying to create character in slot #: ", this.characterSlot);
                     } else if (this.characterSlot === 3) {

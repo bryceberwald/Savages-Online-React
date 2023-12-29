@@ -13,7 +13,6 @@ export default class CharacterScene extends Phaser.Scene {
      **********************************/
     constructor() {
         super("Character");
-
         this.characterSlots = {};
     };
 
@@ -142,8 +141,15 @@ export default class CharacterScene extends Phaser.Scene {
                 deleteButton: deleteButton,
                 createButton: createButton
             };
+                    
+            // TODO: Add logic to check if the character slot is empty or not and add a character to slot in database if empty.
+            this.characterSlots[i].createButton.on('pointerdown', () => {
+                console.log("Creating a character...");
+            });
             
         };
     };
+
+    
 
 };
