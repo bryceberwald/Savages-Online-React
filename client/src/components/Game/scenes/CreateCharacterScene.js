@@ -1,10 +1,10 @@
 import Phaser from 'phaser';
 import { config } from '../config/configuration';
 
-export default class CharacterCreationScene extends Phaser.Scene {
+export default class CreateCharacterScene extends Phaser.Scene {
     constructor(scene, characterSlotNumber) {
-        super('CharacterCreationScene');
-        
+        super('CreateCharacter');
+
         this.scene = scene;
         this.characterSlotNumber = characterSlotNumber;
     }

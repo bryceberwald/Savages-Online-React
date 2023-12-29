@@ -54,7 +54,7 @@ export default class UiButton extends Phaser.GameObjects.Container {
                     // TODO: Start the game with a character from the database (With respect to the slot number)
                     if(this.characterSlot === 1) {
                         console.log("Trying to start the game with character in slot #: ", this.characterSlot);
-                        //this.scene.scene.start('Game');
+                        this.scene.scene.start('Game');
                     } else if (this.characterSlot === 2) {
                         console.log("Trying to start the game with character in slot #: ", this.characterSlot);
                     } else if (this.characterSlot === 3) {
@@ -80,6 +80,8 @@ export default class UiButton extends Phaser.GameObjects.Container {
                     if(this.characterSlot === 1) {
                         
                         console.log("Trying to create character in slot #: ", this.characterSlot);
+                        
+                        this.scene.scene.switch('CreateCharacter');
     
                     } else if(this.characterSlot === 2) {
                         console.log("Trying to create character in slot #: ", this.characterSlot);
