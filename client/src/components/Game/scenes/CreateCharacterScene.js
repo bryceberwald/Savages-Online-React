@@ -16,6 +16,10 @@ export default class CreateCharacterScene extends Phaser.Scene {
         this.characterSlotNumber = characterSlotNumber;
     };
 
+    init(data) {
+        console.log(data.slot);
+    };
+
     /************************************
     * create() - fn
     *************************************/

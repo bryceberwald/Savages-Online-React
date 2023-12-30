@@ -82,16 +82,29 @@ export default class UiButton extends Phaser.GameObjects.Container {
                 case 'CREATE':
                     // TODO: Create a new character in the database (With respect to the slot number)
                     if(this.characterSlot === 1) {
+
+                        // Output to console for debugging purposes only which character slot is to be created in the database.
                         console.log("Trying to create character in slot #: ", { slot: this.characterSlot });
-                        this.scene.scene.switch('CreateCharacter');
+
+                        this.scene.scene.switch('CreateCharacter', { slot: this.characterSlot }); // Why can't I access the passed key/value object in CreateCharacterScene.js?
+
                     } else if(this.characterSlot === 2) {
+
+                        // Output to console for debugging purposes only which character slot is to be created in the database.
                         console.log("Trying to create character in slot #: ", { slot: this.characterSlot });
-                        this.scene.scene.switch('CreateCharacter');
+
+                        this.scene.scene.switch('CreateCharacter', { slot: this.characterSlot }); // Why can't I access the passed key/value object in CreateCharacterScene.js?
+
                     } else if (this.characterSlot === 3) {
+
+                        // Output to console for debugging purposes only which character slot is to be created in the database.
                         console.log("Trying to create character in slot #: ", { slot: this.characterSlot });
-                        this.scene.scene.switch('CreateCharacter');
+
+                        this.scene.scene.switch('CreateCharacter', { slot: this.characterSlot }); // Why can't I access the passed key/value object in CreateCharacterScene.js?
+
                     } else {
-                        console.log("Error creating character....");
+                        // Output message to console when something goes wrong for debugging purposes only.
+                        console.log("Error Creating Character: Invalid character slot number.");
                     };
                     break;
                 default:
