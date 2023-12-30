@@ -8,7 +8,9 @@ export default class UiButton extends Phaser.GameObjects.Container {
      * constructor() - fn
      ******************************/
     constructor(scene, x, y, key, hoverKey, text, action, characterSlot) {
+        
         super(scene, x, y);
+
         this.scene = scene;
         this.x = x;
         this.y = y;
@@ -17,8 +19,10 @@ export default class UiButton extends Phaser.GameObjects.Container {
         this.text = text;
         this.action = action;
         this.characterSlot = characterSlot;
+
         this.createButton();
-        this.scene.add.existing(this); 
+
+        this.scene.add.existing(this);
         
     };
     
@@ -78,15 +82,14 @@ export default class UiButton extends Phaser.GameObjects.Container {
                 case 'CREATE':
                     // TODO: Create a new character in the database (With respect to the slot number)
                     if(this.characterSlot === 1) {
-                        
-                        console.log("Trying to create character in slot #: ", this.characterSlot);
-                        
+                        console.log("Trying to create character in slot #: ", { slot: this.characterSlot });
                         this.scene.scene.switch('CreateCharacter');
-    
                     } else if(this.characterSlot === 2) {
-                        console.log("Trying to create character in slot #: ", this.characterSlot);
+                        console.log("Trying to create character in slot #: ", { slot: this.characterSlot });
+                        this.scene.scene.switch('CreateCharacter');
                     } else if (this.characterSlot === 3) {
-                        console.log("Trying to create character in slot #: ", this.characterSlot);
+                        console.log("Trying to create character in slot #: ", { slot: this.characterSlot });
+                        this.scene.scene.switch('CreateCharacter');
                     } else {
                         console.log("Error creating character....");
                     };

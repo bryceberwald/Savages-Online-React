@@ -1,6 +1,6 @@
 import Phaser from "phaser";
 import BootScene from "../scenes/BootScene.js";
-import CharacterScene from "../scenes/CharacterScene.js";
+import CharacterScene from "../scenes/SelectCharacterScene.js";
 import CharacterCreationScene from "../scenes/CreateCharacterScene.js";
 //import TitleScene from "../scenes/TitleScene.js";
 import GameScene from "../scenes/GameScene.js";

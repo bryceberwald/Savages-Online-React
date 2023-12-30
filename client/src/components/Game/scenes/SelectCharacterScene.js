@@ -3,16 +3,16 @@ import UiButton from '../classes/UiButton';
 import { config } from '../config/configuration';
 
 /**************************************************
- * CharacterScene class
+ * SelectCharacterScene class
  *************************************************/
-export default class CharacterScene extends Phaser.Scene {
+export default class SelectCharacterScene extends Phaser.Scene {
     /***********************************
      * Constructor is called at the
      * initiation of the CharacterScene
      * class.
      **********************************/
     constructor() {
-        super("Character");
+        super("SelectCharacter");
         this.characterSlots = {};
     };
 
