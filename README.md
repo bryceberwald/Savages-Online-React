@@ -2,11 +2,9 @@
 
 ## General Information -
 
-    <text>
     This is a Massive Multiplayer Online Role-Playing Gme (MMORPG) being built with JavaScript/NodeJS, html, css,
     usingthe popular Phaser 3 gaming library, along with ReactJS's web framework for the basis to build the site off
     of.
-    </text>
 
     This project is being developed for fun on the side of my daily life's responsibilities and other ptojects
     I am also currently working.
@@ -67,17 +65,11 @@
 
 **STEP ONE:**
 
-    ```bash
     git clone https://github.com/bryceberwald/Savages-Online-React.git
-    ```
 
-    ```bash
     cd client && npm install
-    ```
 
-    ```bash
     cd ../server && npm install
-    ```
 
 **STEP TWO:**
 
@@ -85,41 +77,29 @@
 
     2. Open Terminal @ /{PROJECT_DIR}'
 
-    3. 
- 
-    ```bash
-        code . 
-    ``` 
+    3. type 'code .' in the terminal.
 
     ABOVE (Step #3) -> (This should open vs code starting from the root directory of the project.)
 
-    4. Inside vs code editor open up dual teminals side-by-side.
+    4. Inside vs code editor open up terminals dualing to be side-by-side.
 
     5. Set the directory on the first terminal to be in /client directory, so... 
-
-    ```bash
+    
         cd client
-    ```
 
-    6.  Set the directory on the second terminal to be in /server directory, so... 
+    9.  Set the directory on the second terminal to be in /server directory, so... 
 
-    ```bash
         cd server
-    ```
 
-    7.  Inside the /{PROJECT_ROOT_DIRECTORY}/client type...
+    10. Inside the /{PROJECT_ROOT_DIRECTORY}/client type...
 
-     ```bash
         npm run start
-     ```
 
     (This will start the client of the web application.)
 
-    8. Inside the /{PROJECT_ROOT_DIRECTORY}/server type...
+    11. Inside the /{PROJECT_ROOT_DIRECTORY}/server type...
 
-     ```bash
-     npm run dev
-     ``` 
+        npm run dev
 
     (This will start the server of the web application.)
 
