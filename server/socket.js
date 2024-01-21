@@ -31,6 +31,9 @@ function initializeSocket(server, corsOptions) {
       // Create a username object {} to store the players username.
       usernames[playerId] = data.username;
 
+      // Assign player in the players object {} default values.
+      players[playerId] = { username: data.username, x: 0, y: 0, frame: 0 };
+
       // Search the database for the player by username.
       const user = await User.findOne({username: data.username});
 
