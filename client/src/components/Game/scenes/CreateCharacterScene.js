@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import UiCustomButton from '../classes/UiCustomButton';
 import { config } from '../config/configuration';
 
 /**************************************************
@@ -14,6 +15,8 @@ export default class CreateCharacterScene extends Phaser.Scene {
 
         this.scene = scene;
         this.characterSlotNumber = characterSlotNumber;
+
+        this.hairstyleSpritesheet = 2;
     };
 
     /************************************
@@ -43,10 +46,11 @@ export default class CreateCharacterScene extends Phaser.Scene {
         character.setOrigin(0.5);
         character.setScale(2);
 
-        const hairstyleFrameNumber = 0;
-        const hairstyle = this.add.image(config.width / 2 + 125, config.height / 2 - 50, 'hairstyle01', hairstyleFrameNumber);
-        hairstyle.setOrigin(0.5);
-        hairstyle.setScale(2);
+        // const hairstyleFrameNumber = 0;
+        // console.log(`hairstyle0${this.hairstyleSpritesheet}`)
+        // const hairstyle = this.add.image(config.width / 2 + 125, config.height / 2 - 50, `hairstyle0${this.hairstyleSpritesheet}`, hairstyleFrameNumber);
+        // hairstyle.setOrigin(0.5);
+        // hairstyle.setScale(2);
 
         this.add.text(((config.width/2) - 400), 90, 'Enter Character Name:', { fontSize: '24px', fill: '#fff' });
 
@@ -81,6 +85,13 @@ export default class CreateCharacterScene extends Phaser.Scene {
         // Set values to created dom elements for styling
         maleRadioButton.setOrigin(0.5, 0.5);
         femaleRadioButton.setOrigin(0.5, 0.5);
+
+        // Add a label for the hairstyle navigation
+        this.add.text(config.width / 2 + 350, config.height / 2 - 50, 'Hair-style:', { fontSize: '24px', fill: '#fff' });
+
+        // Add a UiCustomButton below the radio buttons
+        const leftButton = new UiCustomButton(this, config.width / 2 + 400, config.height / 2, 'button02_left_unpressed', 'button02_left_pressed', 'left');
+        const rightButton = new UiCustomButton(this, config.width / 2 + 450, config.height / 2, 'button02_right_unpressed', 'button02_right_pressed', 'right');
 
         // Create Character Button
         const createButton = this.add.text(680, config.height - 200, 'Create Character', { fontSize: '24px', fill: '#fff' }).setOrigin(0.5);

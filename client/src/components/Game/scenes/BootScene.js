@@ -53,6 +53,12 @@ export default class BootScene extends Phaser.Scene {
         this.load.image("button01_unpressed", "./assets/images/ui/buttons/button01/unpressed.png");
         this.load.image("button01_pressed", "./assets/images/ui/buttons/button01/pressed.png");
 
+        this.load.image("button02_left_unpressed", "./assets/images/ui/buttons/button02/left/unpressed.png");
+        this.load.image("button02_left_pressed", "./assets/images/ui/buttons/button02/left/pressed.png");
+
+        this.load.image("button02_right_unpressed", "./assets/images/ui/buttons/button02/right/unpressed.png");
+        this.load.image("button02_right_pressed", "./assets/images/ui/buttons/button02/right/pressed.png");
+
         // Load map tileset images
         this.load.image("tileset01", "./assets/images/tilesets/CL_MainLev.png");
     };
@@ -106,10 +112,6 @@ export default class BootScene extends Phaser.Scene {
         this.load.spritesheet("hairstyle07", "./assets/images/spritesheets/hairstyles/style07.png", { frameWidth: 64, frameHeight: 64 });
         this.load.spritesheet("hairstyle08", "./assets/images/spritesheets/hairstyles/style08.png", { frameWidth: 64, frameHeight: 64 });
         this.load.spritesheet("hairstyle09", "./assets/images/spritesheets/hairstyles/style09.png", { frameWidth: 64, frameHeight: 64 });
-        this.load.spritesheet("hairstyle10", "./assets/images/spritesheets/hairstyles/style10.png", { frameWidth: 64, frameHeight: 64 });
-        this.load.spritesheet("hairstyle11", "./assets/images/spritesheets/hairstyles/style11.png", { frameWidth: 64, frameHeight: 64 });
-        this.load.spritesheet("hairstyle12", "./assets/images/spritesheets/hairstyles/style12.png", { frameWidth: 64, frameHeight: 64 });
-        this.load.spritesheet("hairstyle13", "./assets/images/spritesheets/hairstyles/style13.png", { frameWidth: 64, frameHeight: 64 });
     };
     
     /******************************
