@@ -1,8 +1,7 @@
 import Phaser from "phaser";
 import BootScene from "../scenes/BootScene.js";
-import CharacterScene from "../scenes/SelectCharacterScene.js";
-import CharacterCreationScene from "../scenes/CreateCharacterScene.js";
-//import TitleScene from "../scenes/TitleScene.js";
+import SelectCharacterScene from "../scenes/SelectCharacterScene.js";
+import CreateCharacterScene from "../scenes/CreateCharacterScene.js";
 import GameScene from "../scenes/GameScene.js";
 import UiScene from "../scenes/UiScene.js";
 
@@ -16,8 +15,8 @@ export const config = {
   },
   scene: [
     BootScene,
-    CharacterScene,
-    CharacterCreationScene,
+    SelectCharacterScene,
+    CreateCharacterScene,
     GameScene,
     UiScene
   ],

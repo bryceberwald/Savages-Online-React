@@ -16,14 +16,22 @@ export default class CreateCharacterScene extends Phaser.Scene {
         this.characterSlotNumber = characterSlotNumber;
     };
 
-    init(data) {
-        console.log(data.slot);
-    };
-
     /************************************
     * create() - fn
     *************************************/
     create() {
+
+        // Retrieve character slot from local storage
+        const slot = parseInt(localStorage.getItem('characterSlot'));
+
+        // Check if the slot is a valid number
+        if (!isNaN(slot) && slot >= 1 && slot <= 3) {
+            console.log('Character slot:', slot);
+            // Your other code for creating a character goes here
+        } else {
+            // Output message to console when something goes wrong for debugging purposes only.
+            console.log("Error Creating Character: Invalid character slot number.");
+        }
 
         // Add text to the screen to prompt the user to enter a character name
         this.add.text(((config.width/2) - 400), 90, 'Enter Character Name:', { fontSize: '24px', fill: '#fff' });
@@ -89,8 +97,11 @@ export default class CreateCharacterScene extends Phaser.Scene {
             
             // TODO: For example, you can pass the characterName to another scene to create the character.
 
-            // Switch back to the "Character" scene
-            this.scene.switch('SelectCharacter');
+            // Stop the current scene before switching
+            this.scene.stop('CreateCharacter');
+
+            // Switch back to the "SelectCharacter" scene
+            this.scene.start('SelectCharacter');
         });
 
     };
