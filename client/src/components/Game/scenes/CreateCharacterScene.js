@@ -90,8 +90,8 @@ export default class CreateCharacterScene extends Phaser.Scene {
         this.add.text(config.width / 2 + 350, config.height / 2 - 50, 'Hair-style:', { fontSize: '24px', fill: '#fff' });
 
         // Add a UiCustomButton below the radio buttons
-        const leftButton = new UiCustomButton(this, config.width / 2 + 400, config.height / 2, 'button02_left_unpressed', 'button02_left_pressed', 'left');
-        const rightButton = new UiCustomButton(this, config.width / 2 + 450, config.height / 2, 'button02_right_unpressed', 'button02_right_pressed', 'right');
+        new UiCustomButton(this, config.width / 2 + 400, config.height / 2, 'button02_left_unpressed', 'button02_left_pressed', 'left');
+        new UiCustomButton(this, config.width / 2 + 450, config.height / 2, 'button02_right_unpressed', 'button02_right_pressed', 'right');
 
         // Create Character Button
         const createButton = this.add.text(680, config.height - 200, 'Create Character', { fontSize: '24px', fill: '#fff' }).setOrigin(0.5);
