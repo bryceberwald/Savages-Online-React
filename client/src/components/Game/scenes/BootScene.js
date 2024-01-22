@@ -95,6 +95,21 @@ export default class BootScene extends Phaser.Scene {
 
         // Load goblin sprite sheets
         this.load.spritesheet("goblin01", "./assets/images/spritesheets/players/goblin/goblin01.png", { frameWidth: 64, frameHeight: 64 });
+
+        // Load hairstyle sprite sheets
+        this.load.spritesheet("hairstyle01", "./assets/images/spritesheets/hairstyles/style01.png", { frameWidth: 64, frameHeight: 64 });
+        this.load.spritesheet("hairstyle02", "./assets/images/spritesheets/hairstyles/style02.png", { frameWidth: 64, frameHeight: 64 });
+        this.load.spritesheet("hairstyle03", "./assets/images/spritesheets/hairstyles/style03.png", { frameWidth: 64, frameHeight: 64 });
+        this.load.spritesheet("hairstyle04", "./assets/images/spritesheets/hairstyles/style04.png", { frameWidth: 64, frameHeight: 64 });
+        this.load.spritesheet("hairstyle05", "./assets/images/spritesheets/hairstyles/style05.png", { frameWidth: 64, frameHeight: 64 });
+        this.load.spritesheet("hairstyle06", "./assets/images/spritesheets/hairstyles/style06.png", { frameWidth: 64, frameHeight: 64 });
+        this.load.spritesheet("hairstyle07", "./assets/images/spritesheets/hairstyles/style07.png", { frameWidth: 64, frameHeight: 64 });
+        this.load.spritesheet("hairstyle08", "./assets/images/spritesheets/hairstyles/style08.png", { frameWidth: 64, frameHeight: 64 });
+        this.load.spritesheet("hairstyle09", "./assets/images/spritesheets/hairstyles/style09.png", { frameWidth: 64, frameHeight: 64 });
+        this.load.spritesheet("hairstyle10", "./assets/images/spritesheets/hairstyles/style10.png", { frameWidth: 64, frameHeight: 64 });
+        this.load.spritesheet("hairstyle11", "./assets/images/spritesheets/hairstyles/style11.png", { frameWidth: 64, frameHeight: 64 });
+        this.load.spritesheet("hairstyle12", "./assets/images/spritesheets/hairstyles/style12.png", { frameWidth: 64, frameHeight: 64 });
+        this.load.spritesheet("hairstyle13", "./assets/images/spritesheets/hairstyles/style13.png", { frameWidth: 64, frameHeight: 64 });
     };
     
     /******************************

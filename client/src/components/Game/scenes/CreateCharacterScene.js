@@ -38,13 +38,16 @@ export default class CreateCharacterScene extends Phaser.Scene {
         square.fillStyle(0xffffff, 1); // white color
         square.fillRect(config.width / 2, config.height / 2 - 175, 250, 250);
 
-        // Load and display an image with a specific frame in the middle of the square
-        const frameNumber = 0; // replace with the desired frame number
-        const image = this.add.image(config.width / 2 + 125, config.height / 2 - 50, 'human01', frameNumber); // replace 'yourSpritesheetKey' with the actual spritesheet key
-        image.setOrigin(0.5); // set the origin to the center/ set the origin to the center
-        image.setScale(2); // scale the image by 2
+        const characterFrameNumber = 0;
+        const character = this.add.image(config.width / 2 + 125, config.height / 2 - 50, 'human01', characterFrameNumber);
+        character.setOrigin(0.5);
+        character.setScale(2);
 
-        // Add text to the screen to prompt the user to enter a character name
+        const hairstyleFrameNumber = 0;
+        const hairstyle = this.add.image(config.width / 2 + 125, config.height / 2 - 50, 'hairstyle01', hairstyleFrameNumber);
+        hairstyle.setOrigin(0.5);
+        hairstyle.setScale(2);
+
         this.add.text(((config.width/2) - 400), 90, 'Enter Character Name:', { fontSize: '24px', fill: '#fff' });
 
         // Create character name input field 
@@ -68,9 +71,12 @@ export default class CreateCharacterScene extends Phaser.Scene {
 
         });
 
+        // Add a label for the gender selection
+        this.add.text(config.width / 2 + 350, config.height / 2 - 150, 'Gender:', { fontSize: '24px', fill: '#fff' });
+
         // Create radio buttons for gender selection
-        const maleRadioButton = this.add.dom(config.width / 2 + 75, config.height / 2 + 100).createFromHTML('<input type="radio" name="gender" id="maleRadio" value="male" checked><label for="maleRadio" style="font-family: Arial, sans-serif; color: #fff;">Male</label>');
-        const femaleRadioButton = this.add.dom(config.width / 2 + 175, config.height / 2 + 100).createFromHTML('<input type="radio" name="gender" id="femaleRadio" value="female"><label for="femaleRadio" style="font-family: Arial, sans-serif; color: #fff;">Female</label>');
+        const maleRadioButton = this.add.dom(config.width / 2 + 400, config.height / 2 - 100).createFromHTML('<input type="radio" name="gender" id="maleRadio" value="male" checked><label for="maleRadio" style="font-family: Arial, sans-serif; color: #fff;">Male</label>');
+        const femaleRadioButton = this.add.dom(config.width / 2 + 500, config.height / 2 - 100).createFromHTML('<input type="radio" name="gender" id="femaleRadio" value="female"><label for="femaleRadio" style="font-family: Arial, sans-serif; color: #fff;">Female</label>');
 
         // Set values to created dom elements for styling
         maleRadioButton.setOrigin(0.5, 0.5);
