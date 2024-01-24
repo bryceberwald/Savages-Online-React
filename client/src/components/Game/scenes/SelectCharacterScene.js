@@ -6,22 +6,17 @@ import { config } from '../config/configuration';
  * SelectCharacterScene class
  *************************************************/
 export default class SelectCharacterScene extends Phaser.Scene {
-    /***********************************
-     * Constructor is called at the
-     * initiation of the CharacterScene
-     * class.
-     **********************************/
+    /************************************
+     * constructor() - fn
+     ***********************************/
     constructor() {
         super("SelectCharacter");
         this.characterSlots = {};
     };
 
     /***********************************
-     * Function is called once when
-     * CharacterScene is active. This
-     * function will be used to create 
-     * the character selection screen.
-     **********************************/
+     * create() - fn
+     ***********************************/
     create() {
         // Add the pre game background image
         this.addBackgroundImage();
@@ -34,10 +29,8 @@ export default class SelectCharacterScene extends Phaser.Scene {
     };
 
     /***********************************
-     * Function is used to add the 
-     * pre game background image to the
-     * character selection screen.
-     **********************************/
+    * addBackgroundImage() - fn
+    ***********************************/
     addBackgroundImage() {
         const background = this.add.image(0, 0, 'pregame_background');
         background.setScale(
@@ -47,20 +40,14 @@ export default class SelectCharacterScene extends Phaser.Scene {
     };
 
     /***********************************
-     * Function is used to add the
-     * character selection slots to the
-     * character selection screen.
-     **********************************/
+    * addCharacterSelectionSlots() - fn
+    ***********************************/
     addCharacterSelectionSlots() {
 
         const boxCount = 3;
-
         const boxSize = 190;
-
         const spacing = 20;
-
         const totalHeight = boxCount * boxSize + (boxCount - 1) * spacing;
-
         const startY = (config.height - totalHeight) / 2 + 100;
 
         for (let i = 0; i < boxCount; i++) {
@@ -84,10 +71,10 @@ export default class SelectCharacterScene extends Phaser.Scene {
                 boxSize,
                 boxSize,
                 0x000000
-                );
+            );
                 
-                // Set the origin of the rectangle to the center
-                buttonContainerBox.setOrigin(0.5);
+            // Set the origin of the rectangle to the center
+            buttonContainerBox.setOrigin(0.5);
 
             // Create a new button for each character selection slot to play the game with that character
             const playButton = new UiButton(
@@ -97,8 +84,10 @@ export default class SelectCharacterScene extends Phaser.Scene {
                 'button01_unpressed',
                 'button01_pressed',
                 'Play',
-                'PLAY',
-                i + 1
+                () => {
+                    console.log("Trying to start the game with character in slot #: ", i + 1);
+                    //this.scene.start('Game');
+                }
             );
             
             // Scale the button size to 50%
@@ -112,44 +101,34 @@ export default class SelectCharacterScene extends Phaser.Scene {
                 'button01_unpressed',
                 'button01_pressed',
                 'Delete',
-                'DELETE',
-                i + 1
+                () => {
+                    console.log("Trying to delete character in slot #: ", i + 1);
+                }
             );
             
             // Scale the button size to 50%
             deleteButton.setScale(0.5);
 
-            // Create a new button for each character selection slot to delete the character
+            // Create a new button for each character selection slot to create a new character.
             const createButton = new UiButton(
                 this,
                 (config.width / 2) + 100,
                 startY + i * (boxSize + spacing) + 50,
                 'button01_unpressed',
                 'button01_pressed',
-                'Create Character',
-                'CREATE',
-                i + 1
+                'Create',
+                () => {
+                    console.log("Trying to create character in slot #:", i + 1);
+                    localStorage.setItem('characterSlot', i + 1);
+                    this.scene.switch('CreateCharacter');
+                }
             );
             
             // Scale the button size to 50%
             createButton.setScale(0.5);
-
-            // Add the character selection slots contents to the characteSolts object {}
-            this.characterSlots[i] = {
-                box: box,
-                playButton: playButton,
-                deleteButton: deleteButton,
-                createButton: createButton
-            };
-                    
-            // TODO: Add logic to check if the character slot is empty or not and add a character to slot in database if empty.
-            this.characterSlots[i].createButton.on('pointerdown', () => {
-                console.log("Creating a character...");
-            });
             
         };
-    };
 
-    
+    };
 
 };

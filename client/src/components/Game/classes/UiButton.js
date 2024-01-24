@@ -1,38 +1,38 @@
 import Phaser from 'phaser';
-/**************************************************
- * UiButton class
- *************************************************/
+
+/****************************************
+* UiButton class
+****************************************/
 export default class UiButton extends Phaser.GameObjects.Container {
 
-    /******************************
-     * constructor() - fn
-     ******************************/
-    constructor(scene, x, y, key, hoverKey, text, action, characterSlot) {
-        
+    /*******************************
+    * Constructor is called at the
+    * initiation of UiButton class.
+    *******************************/
+    constructor(scene, x, y, key, hoverKey, text, targetCallback) {
         super(scene, x, y);
-
         this.scene = scene;
         this.x = x;
         this.y = y;
         this.key = key;
         this.hoverKey = hoverKey;
         this.text = text;
-        this.action = action;
-        this.characterSlot = characterSlot;
-
+        this.targetCallback = targetCallback;
         this.createButton();
-
         this.scene.add.existing(this);
-        
     };
     
     /******************************
-     * createButton() - fn
-     ******************************/
+    * Function is used to create
+    * a button using the parameters
+    * passed to the constructor.
+    * This function gets called in
+    * the constructor.
+    ******************************/
     createButton() {
 
         // Add button displaying unpressed image file
-        this.button = this.scene.add.image(0, 0, 'button01_unpressed');
+        this.button = this.scene.add.image(0, 0, this.key);
 
         // Make button interactive for the user
         this.button.setInteractive();
@@ -52,63 +52,17 @@ export default class UiButton extends Phaser.GameObjects.Container {
 
         // Check to see if user clicked on button
         this.button.on('pointerdown', () => {
-            // Check the action type
-            switch (this.action) {
-                case 'PLAY':
-                    // TODO: Start the game with a character from the database (With respect to the slot number)
-                    if(this.characterSlot === 1) {
-                        console.log("Trying to start the game with character in slot #: ", this.characterSlot);
-                        this.scene.scene.start('Game');
-                    } else if (this.characterSlot === 2) {
-                        console.log("Trying to start the game with character in slot #: ", this.characterSlot);
-                    } else if (this.characterSlot === 3) {
-                        console.log("Trying to start the game with character in slot #: ", this.characterSlot)
-                    } else {
-                        console.log("Error loading character...");
-                    };
-                    break;
-                case 'DELETE':
-                    // TODO: Delete a character from the database (With respect to the slot number)
-                    if(this.characterSlot === 1) {
-                        console.log("Trying to delete character in slot #: ", this.characterSlot);
-                    } else if(this.characterSlot === 2) {
-                        console.log("Trying to delete character in slot #: ", this.characterSlot);
-                    } else if (this.characterSlot === 3) {
-                        console.log("Trying to delete character in slot #: ", this.characterSlot);
-                    } else {
-                        console.log("Error deleting character...");
-                    };
-                    break;
-                case 'CREATE':
-                    if (this.characterSlot >= 1 && this.characterSlot <= 3) {
-                        // Output to console for debugging purposes only which character slot is to be created in the database.
-                        console.log("Trying to create character in slot #:", this.characterSlot);
-                    
-                        // Save the character slot in local storage
-                        localStorage.setItem('characterSlot', this.characterSlot);
-                    
-                        this.scene.scene.switch('CreateCharacter');
-                    } else {
-                        // Output message to console when something goes wrong for debugging purposes only.
-                        console.log("Error Creating Character: Invalid character slot number.");
-                    };
-                    break;
-                default:
-                    // Error checking for invalid action type
-                    console.log('Invalid action inside UiButton.js file when clicking a button in CharacterScene.js');
-                    break;
-            };
+            this.targetCallback();
         });
       
         // Check to see if user hovered over button
         this.button.on('pointerover', () => {
             this.button.setTexture(this.hoverKey);
         });
-
+      
         // check to see if user stopped hovering over button
         this.button.on('pointerout', () => {
             this.button.setTexture(this.key);
         });
-
     };
 };
