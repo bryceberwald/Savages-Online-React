@@ -86,7 +86,7 @@ export default class SelectCharacterScene extends Phaser.Scene {
                 'Play',
                 () => {
                     console.log("Trying to start the game with character in slot #: ", i + 1);
-                    //this.scene.start('Game');
+                    this.scene.start('Game');
                 }
             );
             
