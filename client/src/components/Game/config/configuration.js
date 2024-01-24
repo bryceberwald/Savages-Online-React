@@ -33,13 +33,6 @@ export const config = {
         debug: false,
     },
   },
-  // plugins: {
-  //   global: [{
-  //       key: 'rexInputTextPlugin',
-  //       plugin: InputTextPlugin,
-  //       start: true
-  //   }],
-  // },
 };
 
 export const SavagesOnline = new Phaser.Game(config);
