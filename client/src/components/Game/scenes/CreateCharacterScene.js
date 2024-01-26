@@ -44,6 +44,11 @@ export default class CreateCharacterScene extends Phaser.Scene {
         character.setOrigin(0.5);
         character.setScale(2);
 
+        // Add a image of the hairstyle to the screen inside the white square on the character image.
+        const hairstyle = this.add.image(config.width / 2 + 125, config.height / 2 - 50, 'hairstyle01', 0);
+        hairstyle.setOrigin(0.5);
+        hairstyle.setScale(2);
+
         // Add a label for the character name input field.
         this.add.text(((config.width/2) - 400), 90, 'Enter Character Name:', { fontSize: '24px', fill: '#fff' });
 
@@ -92,20 +97,49 @@ export default class CreateCharacterScene extends Phaser.Scene {
         demonRadioButton.setOrigin(0.5, 0.5);
         goblinRadioButton.setOrigin(0.5, 0.5);
 
-        // Add a label for the race selection.
+
+       /*****************************************************************************************/
+        // NEW CODE - Implementing the character hairstyling customization options through the UI.
+        /*****************************************************************************************/
+        
+
+        // Add a label for the hairstyle selection.
         this.add.text(config.width / 2 + 350, config.height / 2 + 25, 'Hairstyle:', { fontSize: '24px', fill: '#fff' });
+
+        // Add a image of the hairstyle to the screen inside the white square on the character image.
+        const hairstyleImages = ['hairstyle01', 'hairstyle02', 'hairstyle03', 'hairstyle04', 'hairstyle05', 'hairstyle06', 'hairstyle07', 'hairstyle08', 'hairstyle09']; // Add more hairstyles as needed
+        let currentHairstyleIndex = 0;
+
+        const updateHairstyle = () => {
+            this.hairstyle.setTexture(hairstyleImages[currentHairstyleIndex]);
+        };
+
+        this.hairstyle = this.add.image(config.width / 2 + 125, config.height / 2 - 50, hairstyleImages[currentHairstyleIndex], 0);
+        this.hairstyle.setOrigin(0.5);
+        this.hairstyle.setScale(2);
 
         const leftHairstyleButton = new UiButton(this, config.width / 2 + 390, config.height / 2 + 75, 'button02_left_pressed', 'button02_left_unpressed', '', () => {
             console.log('Left Hairstyle Button Pressed');
+
+            currentHairstyleIndex = (currentHairstyleIndex - 1 + hairstyleImages.length) % hairstyleImages.length;
+            updateHairstyle();
         });
 
         leftHairstyleButton.setScale(0.6);
 
         const rightHairStyleButton = new UiButton(this, config.width / 2 + 440, config.height / 2 + 75, 'button02_right_pressed', 'button02_right_unpressed', '', () => {
             console.log('Right Hairstyle Button Pressed');
+
+            currentHairstyleIndex = (currentHairstyleIndex + 1) % hairstyleImages.length;
+            updateHairstyle();
         });
 
         rightHairStyleButton.setScale(0.6);
+
+
+        /*****************************************************************************************/
+        // NEW CODE - Implementing the character hairstyling customization options through the UI.
+        /*****************************************************************************************/
 
 
         // Add text for the 'create character' button.
