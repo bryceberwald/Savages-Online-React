@@ -103,72 +103,24 @@ export default class CreateCharacterScene extends Phaser.Scene {
         /*****************************************************************************************/
         
 
-        // // Add a label for the hairstyle selection.
-        // this.add.text(config.width / 2 + 350, config.height / 2 + 25, 'Hairstyle:', { fontSize: '24px', fill: '#fff' });
-
-        // // Add a image of the hairstyle to the screen inside the white square on the character image.
-        // const hairstyleImages = ['hairstyle01', 'hairstyle02', 'hairstyle03', 'hairstyle04', 'hairstyle05', 'hairstyle06', 'hairstyle07', 'hairstyle08', 'hairstyle09']; // Add more hairstyles as needed
-        // let currentHairstyleIndex = 0;
-
-        // const updateHairstyle = () => {
-        //     this.hairstyle.setTexture(hairstyleImages[currentHairstyleIndex]);
-        // };
-
-        // this.hairstyle = this.add.image(config.width / 2 + 125, config.height / 2 - 50, hairstyleImages[currentHairstyleIndex], 0);
-        // this.hairstyle.setOrigin(0.5);
-        // this.hairstyle.setScale(2);
-
-        // const leftHairstyleButton = new UiButton(this, config.width / 2 + 390, config.height / 2 + 75, 'button02_left_pressed', 'button02_left_unpressed', '', () => {
-        //     console.log('Left Hairstyle Button Pressed');
-
-        //     currentHairstyleIndex = (currentHairstyleIndex - 1 + hairstyleImages.length) % hairstyleImages.length;
-        //     updateHairstyle();
-        // });
-
-        // leftHairstyleButton.setScale(0.6);
-
-        // const rightHairStyleButton = new UiButton(this, config.width / 2 + 440, config.height / 2 + 75, 'button02_right_pressed', 'button02_right_unpressed', '', () => {
-        //     console.log('Right Hairstyle Button Pressed');
-
-        //     currentHairstyleIndex = (currentHairstyleIndex + 1) % hairstyleImages.length;
-        //     updateHairstyle();
-        // });
-
-        // rightHairStyleButton.setScale(0.6);
-
-        /********************************************************************************************************************************/
-        //TODO: Fix issue of destorying and creating the hairstyle image to allow the player to choose an otion with no hairstyle selected.
-        
         // Add a label for the hairstyle selection.
         this.add.text(config.width / 2 + 350, config.height / 2 + 25, 'Hairstyle:', { fontSize: '24px', fill: '#fff' });
 
-        // Add an image of the hairstyle to the screen inside the white square on the character image.
+        // Add a image of the hairstyle to the screen inside the white square on the character image.
         const hairstyleImages = ['hairstyle01', 'hairstyle02', 'hairstyle03', 'hairstyle04', 'hairstyle05', 'hairstyle06', 'hairstyle07', 'hairstyle08', 'hairstyle09']; // Add more hairstyles as needed
         let currentHairstyleIndex = 0;
-        let hairstyle = this.add.image(config.width / 2 + 125, config.height / 2 - 50, hairstyleImages[currentHairstyleIndex], 0);
-        hairstyle.setOrigin(0.5);
-        hairstyle.setScale(2);
 
         const updateHairstyle = () => {
-            if (currentHairstyleIndex === 10) {
-                // Destroy the hairstyle image at index zero
-                hairstyle.destroy();
-                hairstyle = undefined;
-            } else {
-                // Create or add the image again when the index is above zero
-                if (!hairstyle) {
-                    hairstyle = this.add.image(config.width / 2 + 125, config.height / 2 - 50, hairstyleImages[currentHairstyleIndex], 0);
-                    hairstyle.setOrigin(0.5);
-                    hairstyle.setScale(2);
-                } else {
-                    // Set texture for other indices
-                    hairstyle.setTexture(hairstyleImages[currentHairstyleIndex]);
-                }
-            }
+            this.hairstyle.setTexture(hairstyleImages[currentHairstyleIndex]);
         };
+
+        this.hairstyle = this.add.image(config.width / 2 + 125, config.height / 2 - 50, hairstyleImages[currentHairstyleIndex], 0);
+        this.hairstyle.setOrigin(0.5);
+        this.hairstyle.setScale(2);
 
         const leftHairstyleButton = new UiButton(this, config.width / 2 + 390, config.height / 2 + 75, 'button02_left_pressed', 'button02_left_unpressed', '', () => {
             console.log('Left Hairstyle Button Pressed');
+
             currentHairstyleIndex = (currentHairstyleIndex - 1 + hairstyleImages.length) % hairstyleImages.length;
             updateHairstyle();
         });
@@ -177,6 +129,7 @@ export default class CreateCharacterScene extends Phaser.Scene {
 
         const rightHairStyleButton = new UiButton(this, config.width / 2 + 440, config.height / 2 + 75, 'button02_right_pressed', 'button02_right_unpressed', '', () => {
             console.log('Right Hairstyle Button Pressed');
+
             currentHairstyleIndex = (currentHairstyleIndex + 1) % hairstyleImages.length;
             updateHairstyle();
         });
