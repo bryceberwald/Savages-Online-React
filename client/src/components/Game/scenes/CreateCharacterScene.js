@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import UiButton from '../classes/UiButton';
 import { config } from '../config/configuration';
 
 /**************************************************
@@ -90,6 +91,22 @@ export default class CreateCharacterScene extends Phaser.Scene {
         humanRadioButton.setOrigin(0.5, 0.5);
         demonRadioButton.setOrigin(0.5, 0.5);
         goblinRadioButton.setOrigin(0.5, 0.5);
+
+        // Add a label for the race selection.
+        this.add.text(config.width / 2 + 350, config.height / 2 + 25, 'Hairstyle:', { fontSize: '24px', fill: '#fff' });
+
+        const leftHairstyleButton = new UiButton(this, config.width / 2 + 390, config.height / 2 + 75, 'button02_left_pressed', 'button02_left_unpressed', '', () => {
+            console.log('Left Hairstyle Button Pressed');
+        });
+
+        leftHairstyleButton.setScale(0.6);
+
+        const rightHairStyleButton = new UiButton(this, config.width / 2 + 440, config.height / 2 + 75, 'button02_right_pressed', 'button02_right_unpressed', '', () => {
+            console.log('Right Hairstyle Button Pressed');
+        });
+
+        rightHairStyleButton.setScale(0.6);
+
 
         // Add text for the 'create character' button.
         const createButton = this.add.text(680, config.height - 200, 'Create Character', { fontSize: '24px', fill: '#fff' }).setOrigin(0.5);
