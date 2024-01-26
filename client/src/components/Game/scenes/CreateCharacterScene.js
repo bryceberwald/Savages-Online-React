@@ -68,23 +68,23 @@ export default class CreateCharacterScene extends Phaser.Scene {
         });
 
         // Add a label for the gender selection.
-        this.add.text(config.width / 2 + 350, config.height / 2 - 150, 'Gender:', { fontSize: '24px', fill: '#fff' });
+        this.add.text(config.width / 2 + 350, config.height / 2 - 175, 'Gender:', { fontSize: '24px', fill: '#fff' });
 
         // Create radio buttons for gender selection.
-        const maleRadioButton = this.add.dom(config.width / 2 + 380, config.height / 2 - 100).createFromHTML('<input type="radio" name="gender" id="maleRadio" value="male" checked><label for="maleRadio" style="font-family: Arial, sans-serif; color: #fff;">Male</label>');
-        const femaleRadioButton = this.add.dom(config.width / 2 + 480, config.height / 2 - 100).createFromHTML('<input type="radio" name="gender" id="femaleRadio" value="female"><label for="femaleRadio" style="font-family: Arial, sans-serif; color: #fff;">Female</label>');
+        const maleRadioButton = this.add.dom(config.width / 2 + 380, config.height / 2 - 125).createFromHTML('<input type="radio" name="gender" id="maleRadio" value="male" checked><label for="maleRadio" style="font-family: Arial, sans-serif; color: #fff;">Male</label>');
+        const femaleRadioButton = this.add.dom(config.width / 2 + 480, config.height / 2 - 125).createFromHTML('<input type="radio" name="gender" id="femaleRadio" value="female"><label for="femaleRadio" style="font-family: Arial, sans-serif; color: #fff;">Female</label>');
 
         // Set values to created dom elements for styling.
         maleRadioButton.setOrigin(0.5, 0.5);
         femaleRadioButton.setOrigin(0.5, 0.5);
 
         // Add a label for the race selection.
-        this.add.text(config.width / 2 + 350, config.height / 2 - 50, 'Race:', { fontSize: '24px', fill: '#fff' });
+        this.add.text(config.width / 2 + 350, config.height / 2 - 75, 'Race:', { fontSize: '24px', fill: '#fff' });
 
         // Create radio buttons for race selection.
-        const humanRadioButton = this.add.dom(config.width / 2 + 380, config.height / 2).createFromHTML('<input type="radio" name="race" id="humanRadio" value="human" checked><label for="humanRadio" style="font-family: Arial, sans-serif; color: #fff;">Human</label>');
-        const demonRadioButton = this.add.dom(config.width / 2 + 480, config.height / 2).createFromHTML('<input type="radio" name="race" id="demonRadio" value="demon"><label for="demonRadio" style="font-family: Arial, sans-serif; color: #fff;">Demon</label>');
-        const goblinRadioButton = this.add.dom(config.width / 2 + 580, config.height / 2).createFromHTML('<input type="radio" name="race" id="goblinRadio" value="goblin"><label for="goblinRadio" style="font-family: Arial, sans-serif; color: #fff;">Goblin</label>');
+        const humanRadioButton = this.add.dom(config.width / 2 + 380, config.height / 2 - 25).createFromHTML('<input type="radio" name="race" id="humanRadio" value="human" checked><label for="humanRadio" style="font-family: Arial, sans-serif; color: #fff;">Human</label>');
+        const demonRadioButton = this.add.dom(config.width / 2 + 480, config.height / 2 - 25).createFromHTML('<input type="radio" name="race" id="demonRadio" value="demon"><label for="demonRadio" style="font-family: Arial, sans-serif; color: #fff;">Demon</label>');
+        const goblinRadioButton = this.add.dom(config.width / 2 + 580, config.height / 2 - 25).createFromHTML('<input type="radio" name="race" id="goblinRadio" value="goblin"><label for="goblinRadio" style="font-family: Arial, sans-serif; color: #fff;">Goblin</label>');
 
         // Set values to created dom elements for styling.
         humanRadioButton.setOrigin(0.5, 0.5);
