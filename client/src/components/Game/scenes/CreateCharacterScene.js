@@ -22,11 +22,11 @@ export default class CreateCharacterScene extends Phaser.Scene {
     create() {
 
         // Retrieve character slot from local storage.
-        const slot = parseInt(localStorage.getItem('characterSlot'));
+        const characterSlotNumber = parseInt(localStorage.getItem('characterSlot'));
 
         // Check if the slot is a valid number.
-        if (!isNaN(slot) && slot >= 1 && slot <= 3) {
-            console.log('Character slot:', slot);
+        if (!isNaN(characterSlotNumber) && characterSlotNumber >= 1 && characterSlotNumber <= 3) {
+            console.log('Character slot:', characterSlotNumber);
             // Your other code for creating a character goes here.
         } else {
             // Output message to console when something goes wrong for debugging purposes only.
@@ -53,20 +53,20 @@ export default class CreateCharacterScene extends Phaser.Scene {
         // Set values to created dom element for styling.
         characterName.getChildByName('nameField').style.width = '400px';
         characterName.setOrigin(0.5, 0.5);
-        characterName.addListener('click');
+        // characterName.addListener('click');
 
         /****************************************
          * Character name input field click event
          ****************************************/
-        characterName.on('click', function (event) {
+        // characterName.on('click', function (event) {
 
-            if (event.target.name === 'nameField') {
+        //     if (event.target.name === 'nameField') {
 
-                // TODO: Handle input field click event if needed
+        //         // TODO: Handle input field click event if needed
 
-            };
+        //     };
 
-        });
+        // });
 
         // Add a label for the gender selection.
         this.add.text(config.width / 2 + 350, config.height / 2 - 175, 'Gender:', { fontSize: '24px', fill: '#fff' });
@@ -233,17 +233,21 @@ export default class CreateCharacterScene extends Phaser.Scene {
          ************************************/
         createButton.on('pointerdown', () => {
 
-            // Handle the character creation logic here.
+            // Retrieve the character name from the input field.
             const name = characterName.getChildByName('nameField').value;
 
-            // Output the character name to the console for debugging purposes.
-            console.log('Character Name:', name);
+            // Check the length, allowed characters, and enforce constraints.
+            if (name.length >= 4 && name.length <= 10 && /^[a-z]+$/.test(name)) {
+                // Output the character name in the slot number that's trying to be created.
+                console.log(`Trying to create character with name: ${name} in slot #: ${characterSlotNumber}`);
+                // TODO: Add character to database with name and selected options with an api-request to the server.
 
-            //TODO: Add logic to create the character in the game using the entered name
+            } else {
+                // Inform the user about the invalid input.
+                console.log('Invalid character name. Please use 4 to 10 lowercase letters only.');
+                // TODO: Add appropriate error handling or feedback to the user in a ui friendly way.
+            };
 
-            //TODO: For example, you can pass the characterName to another scene to create the character.
-            
-            //TODO: this.scene.start('YourGameScene', { characterName });
         });
 
         // Add text for the 'go back' button.
@@ -256,11 +260,6 @@ export default class CreateCharacterScene extends Phaser.Scene {
         * Back button on click event
         *************************************/
         backButton.on('pointerdown', () => {
-
-
-            // TODO: Add logic to create the character in the game using the entered name
-            
-            // TODO: For example, you can pass the characterName to another scene to create the character.
 
             // Stop the current scene before switching.
             this.scene.stop('CreateCharacter');
