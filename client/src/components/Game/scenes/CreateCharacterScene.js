@@ -44,11 +44,6 @@ export default class CreateCharacterScene extends Phaser.Scene {
         character.setOrigin(0.5);
         character.setScale(2);
 
-        // Add a image of the hairstyle to the screen inside the white square on the character image.
-        const hairstyleImage = this.add.image(config.width / 2 + 125, config.height / 2 - 50, 'hairstyle01', 0);
-        hairstyleImage.setOrigin(0.5);
-        hairstyleImage.setScale(2);
-
         // Add a label for the character name input field.
         this.add.text(((config.width/2) - 400), 90, 'Enter Character Name:', { fontSize: '24px', fill: '#fff' });
 
@@ -101,41 +96,88 @@ export default class CreateCharacterScene extends Phaser.Scene {
        /*****************************************************************************************/
         // NEW CODE - Implementing the character hairstyling customization options through the UI.
         /*****************************************************************************************/
-        
 
+                
         // Add a label for the hairstyle selection.
         this.add.text(config.width / 2 + 350, config.height / 2 + 25, 'Hairstyle:', { fontSize: '24px', fill: '#fff' });
 
-        // Add a image of the hairstyle to the screen inside the white square on the character image.
+        // Add an image of the hairstyle to the screen inside the white square on the character image.
         const hairstyleImages = ['hairstyle01', 'hairstyle02', 'hairstyle03', 'hairstyle04', 'hairstyle05', 'hairstyle06', 'hairstyle07', 'hairstyle08', 'hairstyle09']; // Add more hairstyles as needed
+        let hairstyle = undefined;
         let currentHairstyleIndex = 0;
+        let hairstyleUpperBound = hairstyleImages.length;
+        let isHairstyleImageCreated = false;
 
-        const updateHairstyle = () => {
-            this.hairstyle.setTexture(hairstyleImages[currentHairstyleIndex]);
+        // Function to cycle through the hairstyles in a positive direction.
+        const nextHairstyle = () => {
+            currentHairstyleIndex += 1;
+            if (currentHairstyleIndex > hairstyleUpperBound) {
+                currentHairstyleIndex = 0;
+            };
+            updateHairstyle();
         };
-
-        this.hairstyle = this.add.image(config.width / 2 + 125, config.height / 2 - 50, hairstyleImages[currentHairstyleIndex], 0);
-        this.hairstyle.setOrigin(0.5);
-        this.hairstyle.setScale(2);
-
+        
+        // Function to cycle through the hairstyles in a negative direction.
+        const prevHairstyle = () => {
+            currentHairstyleIndex -= 1;
+            if (currentHairstyleIndex < 0) {
+                if(hairstyle !== undefined){
+                    currentHairstyleIndex = hairstyleUpperBound;
+                } else {
+                    currentHairstyleIndex = hairstyleUpperBound - 1;
+                };
+            };
+            updateHairstyle();
+        };
+          
+        // Function to update the hairstyle image (destroying, creating, or updating the image as needed).
+        const updateHairstyle = () => {
+            if (currentHairstyleIndex === hairstyleUpperBound) {
+              // clean up hairstyle
+              destroyHairstyleImage();
+            } else {
+              // create hairstyle image
+              createHairstyleImage();
+            };
+        };
+        
+        // Function to create the hairstyle image or update the texture of the hairstyle image if it already exists.
+        const createHairstyleImage = () => {
+            console.log('Creating hairstyle image');
+            if(!isHairstyleImageCreated){
+                hairstyle = this.add.image(config.width / 2 + 125, config.height / 2 - 50, hairstyleImages[currentHairstyleIndex], 0);
+                hairstyle.setOrigin(0.5);
+                hairstyle.setScale(2);
+                isHairstyleImageCreated = true;
+            } else {
+                hairstyle.setTexture(hairstyleImages[currentHairstyleIndex]);
+            };
+        };
+        
+        // Function to destroy the hairstyle image if it exists.
+        const destroyHairstyleImage = () => {
+            console.log('Destroying hairstyle image');
+            if(isHairstyleImageCreated){
+                hairstyle.destroy();
+                hairstyle = undefined;
+                isHairstyleImageCreated = false;
+            };
+        };
+        
+        // Create a left arrow button for the hairstyle selection.
         const leftHairstyleButton = new UiButton(this, config.width / 2 + 390, config.height / 2 + 75, 'button02_left_pressed', 'button02_left_unpressed', '', () => {
             console.log('Left Hairstyle Button Pressed');
-
-            currentHairstyleIndex = (currentHairstyleIndex - 1 + hairstyleImages.length) % hairstyleImages.length;
-            updateHairstyle();
+            prevHairstyle();
         });
-
         leftHairstyleButton.setScale(0.6);
-
+        
+        // Create a right arrow button for the hairstyle selection.
         const rightHairStyleButton = new UiButton(this, config.width / 2 + 440, config.height / 2 + 75, 'button02_right_pressed', 'button02_right_unpressed', '', () => {
             console.log('Right Hairstyle Button Pressed');
-
-            currentHairstyleIndex = (currentHairstyleIndex + 1) % hairstyleImages.length;
-            updateHairstyle();
+            nextHairstyle();
         });
-
         rightHairStyleButton.setScale(0.6);
-
+        
 
         /*****************************************************************************************/
         // NEW CODE - Implementing the character hairstyling customization options through the UI.
