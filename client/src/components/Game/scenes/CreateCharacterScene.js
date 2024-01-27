@@ -79,21 +79,59 @@ export default class CreateCharacterScene extends Phaser.Scene {
         maleRadioButton.setOrigin(0.5, 0.5);
         femaleRadioButton.setOrigin(0.5, 0.5);
 
+
+        /*****************************************************************************************/
+        // NEW CODE - Implementing the character spritesheet radio button selections through the UI.
+        /*****************************************************************************************/
+
+
         // Add a label for the race selection.
         this.add.text(config.width / 2 + 350, config.height / 2 - 75, 'Race:', { fontSize: '24px', fill: '#fff' });
-
+    
         // Create radio buttons for race selection.
         const humanRadioButton = this.add.dom(config.width / 2 + 380, config.height / 2 - 25).createFromHTML('<input type="radio" name="race" id="humanRadio" value="human" checked><label for="humanRadio" style="font-family: Arial, sans-serif; color: #fff;">Human</label>');
         const demonRadioButton = this.add.dom(config.width / 2 + 480, config.height / 2 - 25).createFromHTML('<input type="radio" name="race" id="demonRadio" value="demon"><label for="demonRadio" style="font-family: Arial, sans-serif; color: #fff;">Demon</label>');
         const goblinRadioButton = this.add.dom(config.width / 2 + 580, config.height / 2 - 25).createFromHTML('<input type="radio" name="race" id="goblinRadio" value="goblin"><label for="goblinRadio" style="font-family: Arial, sans-serif; color: #fff;">Goblin</label>');
-
+    
         // Set values to created dom elements for styling.
         humanRadioButton.setOrigin(0.5, 0.5);
         demonRadioButton.setOrigin(0.5, 0.5);
         goblinRadioButton.setOrigin(0.5, 0.5);
+    
+        // Function to update the character spritesheet based on the selected race.
+        const updateCharacterSpritesheet = (race) => {
+            // Assuming the race values match the corresponding part of the spritesheet names.
+            character.setTexture(`${race}01`);
+        };
+    
+        // Event listeners for the race radio buttons.
+        humanRadioButton.addListener('click');
+        demonRadioButton.addListener('click');
+        goblinRadioButton.addListener('click');
+    
+        humanRadioButton.on('click', function () {
+            // Update character spritesheet for the selected race.
+            updateCharacterSpritesheet('human');
+        });
+    
+        demonRadioButton.on('click', function () {
+            // Update character spritesheet for the selected race.
+            updateCharacterSpritesheet('demon');
+        });
+    
+        goblinRadioButton.on('click', function () {
+            // Update character spritesheet for the selected race.
+            updateCharacterSpritesheet('goblin');
+        });
 
 
-       /*****************************************************************************************/
+        /*****************************************************************************************/
+        // END OF NEW CODE - Race/Spritesheet customization options
+        /*****************************************************************************************/
+
+    
+
+        /*****************************************************************************************/
         // NEW CODE - Implementing the character hairstyling customization options through the UI.
         /*****************************************************************************************/
 
@@ -180,7 +218,7 @@ export default class CreateCharacterScene extends Phaser.Scene {
         
 
         /*****************************************************************************************/
-        // NEW CODE - Implementing the character hairstyling customization options through the UI.
+        // END OF NEW CODE - Hairstyle customization options
         /*****************************************************************************************/
 
 
