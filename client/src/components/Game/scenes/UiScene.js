@@ -46,11 +46,12 @@ export default class UiScene extends Phaser.Scene {
         });
 
         // Create a input area for the user to type a chat message
-        this.inputText = this.add.rexInputText(60, 480, 1160, 20, { 
+        this.inputText = this.add.rexInputText(180, 470, 900, 20, { 
             placeholder: "Type chat message here...",
+            color: '#000000',
             text: this.chatMessage, 
             fontSize: '16px', 
-            backgroundColor: '#808080 ',
+            backgroundColor: '#ffffff',
             type: 'text'
         });
 

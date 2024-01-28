@@ -22,7 +22,7 @@ export const config = {
   ],
   scale: {
     type: Phaser.AUTO,
-    mode: Phaser.Scale.FIT, // .Auto
+    mode: Phaser.Scale.AUTO, // .Auto or .FIT
     autoCenter: Phaser.Scale.CENTER_BOTH,
     zoom: 1,
   },
