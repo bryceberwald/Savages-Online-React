@@ -143,7 +143,7 @@ export default class BootScene extends Phaser.Scene {
 
         // Check if startGame is set to true, if so starting the GameScene.
         if(startGame === 'true'){
-            this.scene.start("SelectCharacter");
+            this.scene.start("Game");
         };
     };
     

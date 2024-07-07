@@ -44,6 +44,15 @@ export default class Player extends Phaser.Physics.Arcade.Image {
         level: this.level,
       };
 
+      if(this.playerData){
+        const data = this.playerData;
+        data.x = this.x;
+        data.y = this.y;
+      }
+
+      // Update the position of the player's username to follow the player
+      this.playerDataText = this.scene.add.text(this.playerData.x - 20, this.playerData.y - 60, this.playerData.username);
+      
       // Create a variable that holds the keyboard input
       this.cursors = this.scene.input.keyboard.createCursorKeys();
 
@@ -89,6 +98,12 @@ export default class Player extends Phaser.Physics.Arcade.Image {
       if(this.chatMessage !== ""){
         this.socket.handleSocketEmitChatMessage(this.chatMessage);
       };
+
+        this.playerData.x = this.body.x;
+        this.playerData.y = this.body.y;
+
+        // this.playerDataText = this.scene.add.setPosition(this.body.x + 20, this.body.y - 60);
+
 
       // Check if there's a current chat text, if so have it follow the player.
       if(this.chatText){
